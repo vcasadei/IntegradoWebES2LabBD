@@ -49,14 +49,15 @@
                             <label for="username-edt">Login:</label>
                             <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
                             <label for="password-edt">Senha:</label>
-                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/>
-
+                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-conf-edt">Confirmação da Senha:</label>
+                            <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/>
                             <br>
 
                         </p>
                         <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="text" class="btn-cadastrar" value="Cadastrar">
+                            <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
                         </div>
                     </form>
 
@@ -75,12 +76,9 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
-        <script src="./js/pesquisa-home.js"></script>
+        <script src="./js/registro-usuario-validation.js"></script>
+        
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script>
-            $(document).ready(function() {
-            });
-        </script>
     </body>
 </html>

@@ -363,7 +363,7 @@ section {
 
 .journal-title-edt,
 .journal-issn-edt,
-.data-edt, .abreviation-title-edt, .nlm-title-edt, .forname-edt, .lastname-edt, .initials-edt, .username-edt, .password-edt, .email-edt, .name-edt, .familyname-edt, .user-type-edt {
+.data-edt, .abreviation-title-edt, .nlm-title-edt, .forname-edt, .lastname-edt, .initials-edt, .username-edt, .password-edt, .password-conf-edt, .email-edt, .name-edt, .familyname-edt, .user-type-edt {
     border: 1px solid #777;
     font-family: 'Open Sans', sans-serif;
     font-size: 17px;
@@ -382,10 +382,15 @@ section {
 
 .username-edt {
     width: 35%;
-    margin-right: 44%;
+    margin-right: 30%;
 }
 
 .password-edt {
+    width: 35%;
+    margin-right: 30%;
+}
+
+.password-conf-edt {
     width: 35%;
     margin-right: 44%;
 }
@@ -407,7 +412,7 @@ section {
 
 .user-type-edt {
     width: 20%;
-    margin-right: 50%;
+    margin-right: 53%;
 }
 
 .initials-edt {

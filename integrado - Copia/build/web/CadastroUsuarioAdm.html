@@ -47,9 +47,12 @@
                         <p class="side-fields">
 
                         <label for="username-edt">Login:</label>
-                        <input type="text" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                        <label for="password-edt">Senha:</label>
-                        <input type="password" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
+                            <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-edt">Senha:</label>
+                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-conf-edt">Confirmação da Senha:</label>
+                            <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/><br><br>
+
                         
                         <label for="user-type-edt">Tipo de Usuário:</label>
                         <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
@@ -61,7 +64,7 @@
                         </p>
                         <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="text" class="btn-cadastrar-admin" value="Cadastrar">
+                            <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
                         </div>
                     </form>
                     
@@ -79,6 +82,6 @@
         <script src="./js/jquery-1.9.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
         
-        <script src="./js/pesquisa-home.js"></script>
+        <script src="./js/registro-usuarioAdm-validation.js"></script>
     </body>
 </html>

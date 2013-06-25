@@ -70,41 +70,7 @@ $(document).ready(function(){
 
 
 });
-$('.btn-cadastrar').click(function() {
-    $.ajax({
-        type: "POST",
-        url: "CadastrarUsuarioComum",
-        dataType: "text",
-        data: {login: $('#username-edt').val(), senha: $('#password-edt').val()}
-    }).done(function(data) {
-        status = data;
-        if (status == "2") {
-            $('#msg').html("<span>Login já está sendo utilizado!</span>");
-        } else if (status == "0") {
-            alert("Houve um erro, tente novamente mais tarde");
-        } else {
-            window.location.href='Login.html';
-            alert("Usuário cadastrado com sucesso!");
-        }
-    });
-});
 
-$('.btn-cadastrar-admin').click(function() {
-    $.ajax({
-        type: "POST",
-        url: "CadastrarUsuario",
-        dataType: "text",
-        data: {login: $('#username-edt').val(), senha: $('#password-edt').val(), tipo: $('#user-type-edt').val()}
-    }).done(function(data) {
-        status = data;
-        if (status == "2") {
-            $('#msg').html("<span>Login já está sendo utilizado!</span>");
-        } else if (status == "0") {
-            alert("Houve um erro, tente novamente mais tarde");
-        } else {
-            window.location.href='Login.html';
-            alert("Usuário cadastrado com sucesso!");
-        }
-    }); 
-});
+
+
 
