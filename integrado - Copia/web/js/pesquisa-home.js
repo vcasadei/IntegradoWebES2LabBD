@@ -3,11 +3,26 @@ $(document).ready(function(){
     var tipo = new String();
     tipo = "titulo";
     
+    $('#search').keypress(function(e){
+        if (e.which !== 13) {
+
+            $t(".tooltip span").css('display', 'none');
+            $('#search').css('box-shadow', '0px 0px 0px 0px #999999');
+        };
+        
+    });
+    
+    
+    
     $('#search').typeahead({
+        
         source: function(query, process) {
             return $.post('BuscaTitArticle', {
                 tit: query, tipo : tipo
-            }, function(data) {
+            }
+            , function(data) {
+                
+                
                 if (!data) {
                     return [];
                 }
@@ -47,14 +62,14 @@ $(document).ready(function(){
         $('#caixa-pesquisa').focus();   
     });
 
-    $('#btn-pesquisa').on( 'click', function() {
-        $('#caixa-pesquisa').focus();
-        $('#pesquisa-s').submit();
+//    $('#btn-pesquisa').on( 'click', function() {
+//        $('#caixa-pesquisa').focus();
+//        $('#pesquisa-s').submit();
+//
+//    });
 
-    });
 
 });
-
 $('.btn-cadastrar').click(function() {
     $.ajax({
         type: "POST",
@@ -92,3 +107,4 @@ $('.btn-cadastrar-admin').click(function() {
         }
     }); 
 });
+

@@ -21,7 +21,9 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         
-        
+        <script src="js/pesquisa-home-validation.js"></script>
+  
+
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -50,27 +52,33 @@
                            <input class="radios" type="radio" name="tipo" value="titulo" checked/>Título
                            <input class="radios" type="radio" name="tipo" value="keyword"/>Palavra-chave
                        </p>
+                       
+                       
                        <input type="text" data-provide="typeahead" name="search" id="search" class="search-edt" autocomplete="off" placeholder="Digite aqui parte do título de um artigo"/>
                        <input type="hidden" name="pagina" value="1"/>
                        <input type="hidden" name="qtdePaginas" value="0"/>
-                       <input type="text" class="search-btn" id="btn-pesquisa"/>
+                       <input type="text" class="search-btn" id="btn-pesquisa" />
+     
                    </form>
                    <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
                        <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
+                            
                             <label for="journal-title-edt">Titulo </label>
                             <input type="text" autocomplete="off" data-provide="typeahead" name="journal-title-edt" id="journalTitle" class="journal-title-edt noEnterSubmit" placeholder=""/>
+                            
                             <label for="journal-issn-edt">ISSN </label>
                             <input type="text" autocomplete="off" data-provide="typeahead" name="journal-issn-edt" id="issn" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/>
                             <p class="form-separator">Intervalo de Data:</p>
                             <label for="data-inicial-edt">Inicial </label>
-                            <input type="date" name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
+                            <input type="date"  id="data-ini"name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
                             <label for="data-final-edt">Final </label>
-                            <input type="date" name="data-final-edt" class="data-edt data-final-edt noEnterSubmit"/>
+                            <input type="date" id="data-fim" name="data-final-edt" class="data-edt data-final-edt noEnterSubmit"/>
                             <div class="btn-pesquisar-box">
-                                <input type="submit" class="btn-pesquisar" value="Pesquisar">
+                                <input type="button" class="btn-pesquisar" value="Pesquisar">
                             </div>
                        </div>
+                       
                     </form>
                    <div class="avancada-box"><strong id="avancada">Busca Avançada</strong></div>
                    <div class="avancada-box"><strong id="simples">Busca Simples</strong></div>
@@ -92,5 +100,6 @@
 
         <script src="js/bootstrap.js"></script>
         <script src="js/autocomplete.js"></script>
+        
     </body>
 </html>

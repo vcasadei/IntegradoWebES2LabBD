@@ -1,5 +1,33 @@
 $(document).ready(function() {
     
+    
+    $('#journalTitle').keydown(function(e){
+        if (e.which !== 13) {
+            $t(".tooltip span").css('display', 'none');
+            $('#journalTitle').css('box-shadow', '0px 0px 0px 0px #999999');
+        };
+        
+    });
+    
+    $('#issn').keypress(function(e){
+
+        if (e.which !== 13) {
+            $('#issn').css('box-shadow', '0px 0px 0px 0px #999999');
+        };
+        
+    });
+    
+    $('#data-ini').focusin(function(){
+            $('#data-ini').css('box-shadow', '0px 0px 0px 0px #999999');
+
+        
+    });
+    
+    $('#data-fim').focusin(function(){
+            $('#data-fim').css('box-shadow', '0px 0px 0px 0px #999999');
+        
+    });
+    
     /*Auto complete do keyword*/
     $('#keyword').typeahead({
         source: function(query, process) {
