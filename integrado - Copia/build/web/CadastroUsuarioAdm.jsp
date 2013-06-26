@@ -29,27 +29,40 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
-                        <li><a href="index.jsp">InÃ­cio</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li><a href="">Cadastrar</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
-        
+        <div class="login">
+            <%
+                session = request.getSession(false);
+                if (session.getAttribute("username") != null) {
+            %>
+            <p >Você está logado como <%= session.getAttribute("username") %></p>
+            <%                }
+            %>
+        </div>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar UsuÃ¡rio</a></div>
-                    <h2>Cadastrar UsusÃ¡rio</h2>
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar Usuário</a></div>
+                    <h2>Cadastrar Ususário</h2>
                     <form class="cadastra-usuario-form">
-                        <div class="separator separator2">Todos os campos sÃ£o obrigatÃ³rios</div>
+                        <div class="separator separator2">Todos os campos são obrigatórios</div>
                         
                         <p class="side-fields">
 
                         <label for="username-edt">Login:</label>
-                        <input type="text" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                            <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-edt">Senha:</label>
+                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-conf-edt">Confirmação da Senha:</label>
+                            <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/><br><br>
+
                         
-                        <label for="user-type-edt">Tipo de UsuÃ¡rio:</label>
+                        <label for="user-type-edt">Tipo de Usuário:</label>
                         <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
                             <option value="administrador">Administrador</option>
                             <option value="pesquisador">Pesquisador</option>
@@ -59,7 +72,7 @@
                         </p>
                         <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="button" class="btn-cadastrar-admin" value="Cadastrar">
+                            <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
                         </div>
                     </form>
                     
@@ -67,16 +80,16 @@
             </div> 
         </div> 
         
-        <!-- RodapÃ© -->
+        <!-- Rodapé -->
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>Â© 2013 forArticle - Forward your research!</h3>
+                <h3>© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
         
-        <script src="./js/pesquisa-home.js"></script>
+        <script src="./js/registro-usuarioAdm-validation.js"></script>
     </body>
 </html>

@@ -30,11 +30,22 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
-                        <li><a href="index.html">InÃ­cio</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li><a href="Login.html">Login</a></li>
                     </ul>
                 </nav>
             </header>
+        </div>
+        
+        <div class="login">
+            <%
+                session = request.getSession(false);
+                if(session.getAttribute("username") != null){                    
+            %>
+                <p >Você está logado como</p>
+            <%
+                }                    
+            %>
         </div>
 
         <div class="main-container">
@@ -43,9 +54,9 @@
                     <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Alterar</a> -> <a href="alterarJournal.html">Alterar Journal</a></div>
                     <h2>Alterar Journal</h2>
                     <form class="form-cadastro" action="AlterarJournalArticle" method="POST" id="form-alt-journal">
-                        <div class="separator separator1">InformaÃ§Ãµes sobre a Revista</div>
+                        <div class="separator separator1">Informações sobre a Revista</div>
                         <p class="side-fields">
-                            <label class="label-s" for="nlmuniqueid">NLM (ID Ãºnico): </label>
+                            <label class="label-s" for="nlmuniqueid">NLM (ID único): </label>
                             <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID" autocomplete="off"/>
                             <input type="text" class="noClickSubmit pesquisar-nlm"/>
                             <label class="label-s label-right" for="issn">ISSN: </label>
@@ -53,18 +64,18 @@
                             <input type="text" class="noClickSubmit pesquisar-issn"/>
                         </p>
                         <p class="line-field">
-                            <label class="label-s" for="journalTitle">TÃ­tulo da Revista: </label>
+                            <label class="label-s" for="journalTitle">Título da Revista: </label>
                             <input class="text-s journal" type="text" name="journalTitle" id="journalTitle" value="" disabled/>
                         </p>
                         <p class="side-fields">
-                            <label class="label-s" for="aberviation">AbreviaÃ§Ã£o: </label>
+                            <label class="label-s" for="aberviation">Abreviação: </label>
                             <input class="text-inline abreviation-title-edt" type="text" name="abreviation" disabled/>
                         </p>
                     </form>
                 </div>
                 <div class="voltar-box">
                     <a href="index.html" class="voltar-link">
-                        Voltar para a pÃ¡gina de pesquisa
+                        Voltar para a página de pesquisa
                     </a>
                 </div>
             </div> <!-- #main -->
@@ -72,7 +83,7 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>Â© 2013 forArticle - Forward your research!</h3>
+                <h3>© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 

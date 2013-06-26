@@ -29,7 +29,7 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
-                        <li><a href="index.html">InÃ­cio</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li><a href="Login.html">Login</a></li>
                         
                     </ul>
@@ -67,7 +67,7 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>Â© 2013 forArticle - Forward your research!</h3>
+                <h3>© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 

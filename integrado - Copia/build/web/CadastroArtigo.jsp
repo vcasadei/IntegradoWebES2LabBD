@@ -37,6 +37,15 @@
             </header>
         </div>
 
+       <div class="login">
+            <%
+                session = request.getSession(false);
+                if (session.getAttribute("username") != null) {
+            %>
+            <p >Você está logado como <%= session.getAttribute("username") %></p>
+            <%                }
+            %>
+        </div>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-box">
@@ -88,7 +97,7 @@
                             <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value=""/>
                         </p>
                         <label class="label-s label-right" id="erro" style="color: red">
-                             
+
                         </label>
                         <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>

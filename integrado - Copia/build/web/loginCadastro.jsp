@@ -12,13 +12,13 @@
 
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
+        
         <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/cadastroUsuario.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/login.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    </head>
+    </head> 
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -29,53 +29,41 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
-                        <li><a href="index.jsp">Início</a></li>
-                        <li><a href="Login.jsp">Login</a></li>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="Login.html">Login</a></li>
+                        
                     </ul>
                 </nav>
             </header>
         </div>
-        <div class="login">
-            <%
-                session = request.getSession(false);
-                if (session.getAttribute("username") != null) {
-            %>
-            <p >Você está logado como <%= session.getAttribute("username") %></p>
-            <%                }
-            %>
-        </div>
+
         <div class="main-container">
             <div class="main wrapper clearfix">
-                <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.jsp">Inicio</a> -> <a href="Login.jsp">Login</a> -> <a href="CadastroUsuario.jsp">Cadastrar Usuário</a></div>
-                    <h2>Cadastrar Ususário</h2>
-                    <form class="cadastra-usuario-form" action="CadastrarUsuarioComum" method="POST">
-                        <div class="separator separator4">Todos os campos são obrigatórios</div>
-
+                <div class="login-box">
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="CadastroUsuario.html">Cadastrar</a> -> <a href="Login.html">Login</a></div>
+                    <h3 style="text-align: center">Cadastro realizado com suecesso, efetue login !</h3>
+                    <form class="login-form" action="LoginSistema" method="POST">
+                        <div class="separator separator2"></div>
+                        
                         <p class="side-fields">
-
                             <label for="username-edt">Login:</label>
-                            <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-edt">Senha:</label>
-                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-conf-edt">Confirmação da Senha:</label>
-                            <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/>
-                            <br>
-
+                        <input type="text" id="username-edt" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                        <label for="password-edt">Senha:</label>
+                        <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br>
                         </p>
+                        
+                        
                         <div id="msg"></div>
-                        <div class="btn-cadastrar-box">
-                            <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
+                        <div class="btn-logar-box">
+                            <input type="text" id="btn-logar" class="btn-logar" value="Login">
                         </div>
                     </form>
-
                 </div>
-
+                    
 
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->
-
 
         <div class="footer-container">
             <footer class="wrapper">
@@ -84,9 +72,8 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
-        <script src="./js/registro-usuario-validation.js"></script>
         
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
+        <script src="./js/login-validation.js"></script>
     </body>
 </html>

@@ -29,20 +29,28 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
-                        <li><a href="index.html">In√≠cio</a></li>
+                        <li><a href="index.html">InÌcio</a></li>
                         <li><a href="">Cadastrar</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
-        
+        <div class="login">
+            <%
+                session = request.getSession(false);
+                if (session.getAttribute("username") != null) {
+            %>
+            <p >VocÍ est· logado como <%= session.getAttribute("username") %></p>
+            <%                }
+            %>
+        </div>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar Usu√°rio</a></div>
-                    <h2>Cadastrar Usus√°rio</h2>
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar Usu·rio</a></div>
+                    <h2>Cadastrar Usus·rio</h2>
                     <form class="cadastra-usuario-form">
-                        <div class="separator separator2">Todos os campos s√£o obrigat√≥rios</div>
+                        <div class="separator separator2">Todos os campos s„o obrigatÛrios</div>
                         
                         <p class="side-fields">
 
@@ -50,11 +58,11 @@
                             <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
                             <label for="password-edt">Senha:</label>
                             <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-conf-edt">Confirma√ß√£o da Senha:</label>
+                            <label for="password-conf-edt">ConfirmaÁ„o da Senha:</label>
                             <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/><br><br>
 
                         
-                        <label for="user-type-edt">Tipo de Usu√°rio:</label>
+                        <label for="user-type-edt">Tipo de Usu·rio:</label>
                         <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
                             <option value="administrador">Administrador</option>
                             <option value="pesquisador">Pesquisador</option>
@@ -72,10 +80,10 @@
             </div> 
         </div> 
         
-        <!-- Rodap√© -->
+        <!-- RodapÈ -->
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>¬© 2013 forArticle - Forward your research!</h3>
+                <h3>© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 

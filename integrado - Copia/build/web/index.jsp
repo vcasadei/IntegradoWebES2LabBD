@@ -36,13 +36,29 @@
                 <nav>
                     <ul>
                         <li><a class="menu-item" href="index.jsp">Início</a></li>
+                            <%
+                                session = request.getSession(false);
+                                if (session.getAttribute("username") == null) {
+
+                            %>
                         <li><a href="Login.jsp">Login</a></li>
+                            <%                            }
+                            %>
                         <li><a href="CadastroArtigo.jsp">Cadastrar Artigo</a></li>
+                        <li><a href="CadastroUsuario.jsp">Cadastrar Usuário</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
-
+        <div class="login">
+            <%
+                session = request.getSession(false);
+                if (session.getAttribute("username") != null) {
+            %>
+            <p >Você está logado como <%= session.getAttribute("username") %></p>
+            <%                }
+            %>
+        </div>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="form-box">

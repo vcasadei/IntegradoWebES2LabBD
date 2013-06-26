@@ -44,7 +44,15 @@
                 </nav>
             </header>
         </div>
-
+        <div class="login">
+            <%
+                session = request.getSession(false);
+                if (session.getAttribute("username") != null) {
+            %>
+            <p >Você está logado como <%= session.getAttribute("username") %></p>
+            <%                }
+            %>
+        </div>
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-box">

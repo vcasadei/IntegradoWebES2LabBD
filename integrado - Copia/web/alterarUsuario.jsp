@@ -14,8 +14,8 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/cadastroUsuario.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/cadastroUsuario.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -30,11 +30,12 @@
                 <nav>
                     <ul>
                         <li><a href="index.jsp">Início</a></li>
-                        <li><a href="Login.jsp">Login</a></li>
+                        <li><a href="">Cadastrar</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
+
         <div class="login">
             <%
                 session = request.getSession(false);
@@ -44,49 +45,48 @@
             <%                }
             %>
         </div>
+
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.jsp">Inicio</a> -> <a href="Login.jsp">Login</a> -> <a href="CadastroUsuario.jsp">Cadastrar Usuário</a></div>
-                    <h2>Cadastrar Ususário</h2>
-                    <form class="cadastra-usuario-form" action="CadastrarUsuarioComum" method="POST">
-                        <div class="separator separator4">Todos os campos são obrigatórios</div>
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar UsuÃ¡rio</a></div>
+                    <h2>Cadastrar Usuário</h2>
+                    <form class="cadastra-usuario-form">
+                        <div class="separator separator2">Todos os campos sÃ£o obrigatÃ³rios</div>
 
                         <p class="side-fields">
 
                             <label for="username-edt">Login:</label>
-                            <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-edt">Senha:</label>
-                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-conf-edt">Confirmação da Senha:</label>
-                            <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/>
+                            <input type="text" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+
+                            <label for="user-type-edt">Tipo de UsuÃ¡rio:</label>
+                            <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
+                                <option value="administrador">Administrador</option>
+                                <option value="pesquisador">Pesquisador</option>
+                            </select>
                             <br>
 
                         </p>
                         <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
+                            <input type="button" class="btn-cadastrar-admin" value="Cadastrar">
                         </div>
                     </form>
 
                 </div>
+            </div> 
+        </div> 
 
-
-
-            </div> <!-- #main -->
-        </div> <!-- #main-container -->
-
-
+        <!-- RodapÃ© -->
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>© 2013 forArticle - Forward your research!</h3>
+                <h3>Â© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
-        <script src="./js/registro-usuario-validation.js"></script>
-        
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
 
+        <script src="./js/pesquisa-home.js"></script>
     </body>
 </html>
