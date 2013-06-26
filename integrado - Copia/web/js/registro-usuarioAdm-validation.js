@@ -53,7 +53,7 @@ $t(document).ready(
                     } else if (status == "0") {
                         alert("Houve um erro, tente novamente mais tarde");
                     } else {
-                        window.location.href='Login.html';
+                        window.location.href='loginCadastro.jsp';
                         alert("Usuário cadastrado com sucesso!");
                     }
                 }); 

@@ -26,20 +26,17 @@ $t(document).ready(
                 $t('#msg').html('');
 //                $t('.cadastra-usuario-form').submit();
                 $t("#btn-logar").blur();
-                $t.ajax({
+                $.ajax({
                     type: "POST",
                     url: "FazerLogin",
                     dataType: "text",
-                    data: {login: $t('#username-edt').val(), senha: $t('#password-edt').val()}
+                    data: {login: $('.username-edt').val(), senha: $('.password-edt').val()}
                 }).done(function(data) {
                     status = data;
-                    if (status == "2") {
-                        $t('#msg').html("<span>Login já está sendo utilizado!</span>");
-                    } else if (status == "0") {
-                        alert("Houve um erro, tente novamente mais tarde");
+                    if (status === "0") {
+                        $('#msg').html("<span>Login ou senha inexistentes!</span>");
                     } else {
-                        window.location.href='index.jsp';
-                        alert("Login efetuado com sucesso!");
+                        window.location.href = 'index.jsp';
                     }
                 });
 

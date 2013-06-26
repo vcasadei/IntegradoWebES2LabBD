@@ -124,7 +124,7 @@ $(document).ready(function(){
 //    /*Coloca a mensagem de erro como vazia*/
 //     $('#msg').html("");
     
-//     /*Manda pro servlet*/
+     /*Manda pro servlet*/
 //     $.ajax({
 //         type: "POST",
 //         url: "FazerLogin",
