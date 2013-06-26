@@ -110,11 +110,13 @@ public class CadastrarUsuario extends HttpServlet {
                 /*Manda pra aplicação o resultado de que o login já existe*/
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter writer = response.getWriter();
+                writer.print("2");
                 writer.close();
             } else {
                 /*Manda msg de usuário cadastrado com sucesso*/
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter writer = response.getWriter();
+                writer.print("0");
                 writer.close();
             }
         }

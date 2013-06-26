@@ -21,7 +21,7 @@ public class AlterarJournalArticleDAO {
     
     private Connection conn;
     
-    public AlterarJournalArticleDAO(Usuario user) throws PubMedDAOException{
+    public AlterarJournalArticleDAO(Usuario user) throws PubMedDAOException, SQLException{
         this.conn = ConnectionPubMed.getConnection(user);
     }
     

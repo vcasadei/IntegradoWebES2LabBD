@@ -74,6 +74,14 @@ public class BuscaJournalNlmIssn extends HttpServlet {
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalNlmID(nlmID);
+            
+            /*Se os campos forem null seta como vazio*/
+            if (journal.getAbreviation() == null){
+                journal.setAbreviation("");
+            }
+            if (journal.getISSN() == null){
+                journal.setISSN("");
+            }
 
 
             String dados = "<div class=\"separator separator1\">Informações sobre a Revista</div>"

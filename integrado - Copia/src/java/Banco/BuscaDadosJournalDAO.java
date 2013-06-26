@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class BuscaDadosJournalDAO {
     private Connection conn; 
     
-    public BuscaDadosJournalDAO(Usuario user) throws PubMedDAOException{
+    public BuscaDadosJournalDAO(Usuario user) throws PubMedDAOException, SQLException{
         this.conn = ConnectionPubMed.getConnection(user);
     }
     

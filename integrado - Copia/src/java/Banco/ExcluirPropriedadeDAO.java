@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class ExcluirPropriedadeDAO {
     private Connection conn;
 
-    public ExcluirPropriedadeDAO(Usuario user) throws PubMedDAOException {
+    public ExcluirPropriedadeDAO(Usuario user) throws PubMedDAOException, SQLException {
         this.conn = ConnectionPubMed.getConnection(user);
     }
 

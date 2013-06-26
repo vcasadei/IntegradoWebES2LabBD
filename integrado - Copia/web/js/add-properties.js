@@ -39,14 +39,19 @@ function adicionaKeyword(){
 
 	var ul = document.getElementsByClassName('keyword-list')[0];
 	var li = document.createElement('li');
+        var input = document.createElement('input');
 	var remover = document.createElement('strong');
 	remover.innerHTML = '[remover]';
 	remover.setAttribute('class','keyword-remover');
-    remover.setAttribute('onclick','removeKeyword(this)');
+        remover.setAttribute('onclick','removeKeyword(this)');
 	li.setAttribute('class','keyword-item');
 	li.innerHTML = s_keyword;
 	li.appendChild(remover);
+        input.setAttribute('value', s_keyword);
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'nomeKeyword');
 	ul.appendChild(li);
+        li.appendChild(input);
 
 	var nenhum = document.getElementsByClassName('keyword-nenhum')[0];
 	nenhum.style.display = 'none';
@@ -116,14 +121,19 @@ function adicionaMesh(){
 
 	var ul = document.getElementsByClassName('mesh-list')[0];
 	var li = document.createElement('li');
+        var input = document.createElement('input');
 	var remover = document.createElement('strong');
 	remover.innerHTML = '[remover]';
 	remover.setAttribute('class','mesh-remover');
-    remover.setAttribute('onclick','removeMesh(this)');
+        remover.setAttribute('onclick','removeMesh(this)');
 	li.setAttribute('class','mesh-item');
 	li.innerHTML = s_mesh;
+        input.setAttribute('name', 'nomeMesh');
+        input.setAttribute('value', s_mesh);
+        input.setAttribute('type', 'hidden');
 	li.appendChild(remover);
 	ul.appendChild(li);
+        li.appendChild(input);
 
 	var nenhum = document.getElementsByClassName('mesh-nenhum')[0];
 	nenhum.style.display = 'none';
@@ -202,11 +212,12 @@ function adicionaChemical(){
         remover.setAttribute('onclick','removeChemical(this)');
 	li.setAttribute('class','chemical-item');
 	li.innerHTML = s_chemical;
-        li.innerHTML = input;
 	li.appendChild(remover);
         input.setAttribute('type', 'hidden');
         input.setAttribute('value', s_chemical);
+        input.setAttribute('name', 'nomeChemical');
 	ul.appendChild(li);
+        li.appendChild(input)
 	var nenhum = document.getElementsByClassName('chemical-nenhum')[0];
 	nenhum.style.display = 'none';
 };
@@ -276,14 +287,19 @@ function adicionaPubtype(){
 
 	var ul = document.getElementsByClassName('pubtype-list')[0];
 	var li = document.createElement('li');
+        var input = document.createElement('input');
 	var remover = document.createElement('strong');
 	remover.innerHTML = '[remover]';
 	remover.setAttribute('class','pubtype-remover');
-    remover.setAttribute('onclick','removePubtype(this)');
+        remover.setAttribute('onclick','removePubtype(this)');
 	li.setAttribute('class','pubtype-item');
 	li.innerHTML = s_pubtype;
 	li.appendChild(remover);
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'nomePubtype');
+        input.setAttribute('value', s_pubtype);
 	ul.appendChild(li);
+        li.appendChild(input);
 
 	var nenhum = document.getElementsByClassName('pubtype-nenhum')[0];
 	nenhum.style.display = 'none';
@@ -311,3 +327,93 @@ function existePubtype(pubtype){
 
 	return false;
 };
+
+$('#adicionar-autor').click(function() {
+    adicionaAutor();
+    $('#forename').focus();
+});
+
+$('#adicionar-autor').focus(function() {
+    $('.keyword-edt').focus();
+});
+
+function adicionaAutor(){
+    var autorFName = document.getElementById('forename');
+    var autorLName = document.getElementById('lastname');
+    var autorIName = document.getElementById('initialsname');
+    var FName = autorFName.value;
+    var SName = autorLName.value;
+    var IName = autorIName.value;
+
+    var err = document.getElementsByClassName('autor-erro')[0];
+    err.style.display = 'none';
+
+    if (FName.length <= 0 || SName.length <=0 || IName.length <= 0) {
+            err.style.display = 'block';
+            err.innerHTML = 'Preencha todos os campos';
+            return;
+    };
+
+    if (existeAutor(FName, SName, IName)){
+            err.style.display = 'block';
+            err.innerHTML = 'Autor já adicionado';
+            return;
+    };
+
+    autorFName.value = '';
+    autorLName.value = '';
+    autorIName.value = '';
+
+    var ul = document.getElementsByClassName('selecionados-list')[0];
+    var li = document.createElement('li');
+    var inputFName = document.createElement('input');
+    var inputLName = document.createElement('input');
+    var inputIName = document.createElement('input');
+
+    var remover = document.createElement('strong');
+    remover.innerHTML = '[remover]';
+    remover.setAttribute('class','chemical-remover');
+    remover.setAttribute('onclick','removeAutor(this)');
+    li.setAttribute('class','chemical-item');
+    li.innerHTML = FName + " " + SName + " (" + IName + ")";
+    li.appendChild(remover);
+    inputFName.setAttribute('type', 'hidden');
+    inputFName.setAttribute('name', 'Iforename');
+    inputFName.setAttribute('value', FName);
+    inputLName.setAttribute('type', 'hidden');
+    inputLName.setAttribute('name', 'Ilastname');
+    inputLName.setAttribute('value', SName);
+    inputIName.setAttribute('type', 'hidden');
+    inputIName.setAttribute('name', 'Iinitialsname');
+    inputIName.setAttribute('value', IName);
+    ul.appendChild(li);
+    li.appendChild(inputFName);
+    li.appendChild(inputLName);
+    li.appendChild(inputIName);
+    var nenhum = document.getElementsByClassName('autor-nenhum')[0];
+    nenhum.style.display = 'none';
+};
+
+function existeAutor(FName, SName, IName){
+    var author = FName + " " + SName + " (" + IName + ")";
+    var ul = document.getElementsByClassName('selecionados-list')[0];
+    var len = ul.childElementCount;
+    for (var i = 0; i < len; i++) {
+            if (author === ul.children[i].innerHTML.split('<strong')[0]){
+                    return true;
+            };
+    };
+
+    return false;
+};
+
+function removeAutor(e){
+    var li = e.parentNode;
+	var ul = li.parentNode;
+	li.parentNode.removeChild(li);
+
+	if (ul.childElementCount <= 0){
+		var nenhum = document.getElementsByClassName('autor-nenhum')[0];
+		nenhum.style.display = 'block';
+	};
+}

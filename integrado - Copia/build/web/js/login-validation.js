@@ -15,17 +15,17 @@ $t(document).ready(
     
       $t("#username-edt").change( validate.controls.login);
       $t("#password-edt").change( validate.controls.senha);
-      $t("#btn-cadastrar").click(
+      $t("#btn-logar").click(
          function( event)
          {
-             $t("#btn-cadastrar").blur();
+             $t("#btn-logar").blur();
              console.log("ahoy");
             event.preventDefault();
             if( validate.all())
             {
                 $t('#msg').html('');
 //                $t('.cadastra-usuario-form').submit();
-                $t("#btn-cadastrar").blur();
+                $t("#btn-logar").blur();
                 $t.ajax({
                     type: "POST",
                     url: "FazerLogin",
@@ -45,7 +45,7 @@ $t(document).ready(
 
                
             } else {
-                $t("#btn-cadastrar").blur();
+                $t("#btn-logar").blur();
             }
          });
          

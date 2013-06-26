@@ -22,7 +22,7 @@ public class BuscaPropriedadesDAO {
     private Connection conn;
     
     
-    public BuscaPropriedadesDAO(Usuario usuario, String propriedade) throws PubMedDAOException{
+    public BuscaPropriedadesDAO(Usuario usuario, String propriedade) throws PubMedDAOException, SQLException{
         this.conn = ConnectionPubMed.getConnection(usuario);
         this.propriedade = propriedade;
     }

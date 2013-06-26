@@ -24,4 +24,5 @@ public class PubMedDAOException extends Exception {
     public PubMedDAOException(String arg, Throwable arg1) {
         super(arg, arg1);
     }
+   
 }

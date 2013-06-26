@@ -86,46 +86,81 @@ public class CadastrarArtigo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
+            
             Usuario user = new Usuario("labbd05","bananassaoazuis");
             Article artigo = new Article();
-            Journal journal = new Journal(request.getParameter("nlmuniqueid"), request.getParameter("issn"), request.getParameter("journalTitle"), 
-                    request.getParameter("abreviation"));
+            artigo.setAffiliation(request.getParameter("affiliation"));
+            artigo.setArticleID(request.getParameter("articleId"));
+            artigo.setTitle(request.getParameter("titulo"));
+            artigo.setArticleDate(request.getParameter("data"));
+            artigo.setPublicationStatus(request.getParameter("publication"));
+            artigo.setResumo(request.getParameter("resumo"));
+            artigo.setPagination(request.getParameter("pagination"));
+            artigo.setIssue(request.getParameter("issue"));
+            artigo.setVolume(request.getParameter("volume"));
+            artigo.setUsername(user.getLogin());
+            
+            Journal journal = new Journal(request.getParameter("issn"), request.getParameter("journalTitle"), request.getParameter("abreviation"), request.getParameter("nlmuniqueid"));
+            if(journal.getISSN().isEmpty() || journal.getNlmUniqueID().isEmpty() || journal.getTitle().isEmpty()){
+                journal = null;
+            }
             artigo.setJournal(journal);
             
             ArrayList<Author> autores = new ArrayList();
-            String [] nome = request.getParameterValues("forename");
-            String [] sNome = request.getParameterValues("lastname");
-            String [] iniciais = request.getParameterValues("initialsname");
-            for(int i = 0; i < nome.length; i++){
-                autores.add(new Author(nome[i], sNome[i], iniciais[i]));
+            String [] nome = request.getParameterValues("Iforename");
+            String [] sNome = request.getParameterValues("Ilastname");
+            String [] iniciais = request.getParameterValues("Iinitialsname");
+            if(nome == null || sNome == null || iniciais == null){
+                autores = null;
+            }else{
+                for(int i = 0; i < nome.length; i++){
+                    autores.add(new Author(nome[i], sNome[i], iniciais[i]));
+                }
             }
             artigo.setAutores(autores);
             
             ArrayList <String> keys = new ArrayList();
-            String [] keyword = request.getParameterValues("keyword");
-            for (int i = 0; i < keyword.length; i++){
-                keys.add(keyword[i]);
+            String [] keyword = request.getParameterValues("nomeKeyword");
+            if(keyword == null){
+                keys = null;
+            }else{
+                for (int i = 0; i < keyword.length; i++){
+                    keys.add(keyword[i]);
+                }
             }
             artigo.setKeyWord(keys);
             
             ArrayList<String> mesh = new ArrayList();
-            String [] meshHeading = request.getParameterValues("mesh");
-            for (int i = 0; i < meshHeading.length; i++){
-                mesh.add(meshHeading[i]);
+            String [] meshHeading = request.getParameterValues("nomeMesh");
+            if(meshHeading == null){
+                mesh = null;
+            }else{
+                for (int i = 0; i < meshHeading.length; i++){
+                    mesh.add(meshHeading[i]);
+                }
             }
             artigo.setMeshHeading(mesh);
             
             ArrayList<String> chemical = new ArrayList();
-            String [] chemicalList = request.getParameterValues("chemical");
-            for (int i = 0; i < chemicalList.length; i++){
-                chemical.add(chemicalList[i]);
+            String [] chemicalList = request.getParameterValues("nomeChemical");
+            if(chemicalList == null){
+                chemical = null;
+            }else{
+                for (int i = 0; i < chemicalList.length; i++){
+                    chemical.add(chemicalList[i]);
+                }
             }
             artigo.setChemical(chemical);
             
+            
             ArrayList<String> pubtype = new ArrayList();
-            String [] pubtypeList = request.getParameterValues("pubtype");
-            for (int i = 0; i < pubtypeList.length; i++){
-                pubtype.add(pubtypeList[i]);
+            String [] pubtypeList = request.getParameterValues("nomePubtype");
+            if(pubtypeList == null){
+                pubtype = null;
+            }else{
+                for (int i = 0; i < pubtypeList.length; i++){
+                    pubtype.add(pubtypeList[i]);
+                }
             }
             artigo.setPublicationType(pubtype);
             

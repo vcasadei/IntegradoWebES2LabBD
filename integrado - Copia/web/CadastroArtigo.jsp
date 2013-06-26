@@ -57,7 +57,7 @@
                         </p>
                         <p class="side-fields">
                             <label class="label-s" for="articleId">*Status da Publicação: </label>
-                            <select class="status-combobox">
+                            <select class="status-combobox" name="publication">
                                 <option value="apublish">ppublish</option>
                                 <option value="epublish">epublish</option>
                                 <option value="aheadofprint">aheadofprint</option>
@@ -70,39 +70,35 @@
                             <textarea class="resumo" rows="6" cols="90" name="resumo"></textarea>
                         </p>
                         <div class="separator separator2">Informações sobre a Revista</div>
-                        <div id="form-alt-journal">
-                            <p class="side-fields">
-                                <label class="label-s" for="nlmuniqueid">NLM (ID Único): </label>
-                                <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID" required/>
-                                <input type="text" class="noClickSubmit pesquisar-nlm"/>
-                                <label class="label-s label-right" for="issn">ISSN: </label>
-                                <input class="text-right issn-edt" data-provide="typeahead" type="text" name="issn" id="issn" placeholder="Busque pelo ISSN" required/>
-                                <input type="text" class="noClickSubmit pesquisar-issn"/>
-                            </p>
-                            <p class="line-field">
-                                <label class="label-s" for="journalTitle">Título da Revista: </label>
-                                <input class="text-s journal" data-provide="typeahead" type="text" name="journalTitle" id="journalTitle" placeholder="Busque pelo título"/>
-                                <input type="text" class="noClickSubmit pesquisar-title"/>
-                            </p>
-                        </div>
                         <p class="side-fields">
-                            <label class="label-s" for="aberviation">Abreviação: </label>
-                            <input class="text-inline abreviation-title-edt" type="text" name="abreviation" disabled/>
+                            <label class="label-s" for="nlmuniqueid">NLM (ID Único): </label>
+                            <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID" required value=""/>
+                            <input type="text" class="noClickSubmit pesquisar-nlm"/>
+                            <label class="label-s label-right" for="issn">ISSN: </label>
+                            <input class="text-right issn-edt" data-provide="typeahead" type="text" name="issn" id="issn" placeholder="Busque pelo ISSN" required value=""/>
+                            <input type="text" class="noClickSubmit pesquisar-issn"/>
                         </p>
+                        <p class="line-field">
+                            <label class="label-s" for="journalTitle">Título da Revista: </label>
+                            <input class="text-s journal" data-provide="typeahead" type="text" name="journalTitle" id="journalTitle" placeholder="Busque pelo título" value=""/>
+                            <input type="text" class="noClickSubmit pesquisar-title"/>
+                        </p>
+                        <p class="side-fields">
+                            <label class="label-s" for="abreviation">Abreviação: </label>
+                            <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value=""/>
+                        </p>
+                        <label class="label-s label-right" id="erro" style="color: red">
+                             
+                        </label>
                         <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>
-                            <input class="text-inline" type="text" name="pagination" size="10" disabled/>
+                            <input class="text-inline" type="text" name="pagination" size="10" >
                             <label class="label-s label-right" for="volume">Volume: </label>
-                            <input class="text-inline" type="text" name="volume" size="10" disabled/>
+                            <input class="text-inline" type="text" name="volume" size="10" >
                             <label class="label-s label-right" for="issue">Issue: </label>
-                            <input class="text-inline" type="text" name="issue" size="10" disabled/>
+                            <input class="text-inline" type="text" name="issue" size="10" >
                         </p>
                         <p></p>
-                        <!-- Tem que colocar isso em um js depois, pra aparecer quando o journal não existir-->
-                        <label class="label-s label-right" style="color: red">
-                            Journal inexistente, por favor informe os demais campos para cadastrar um novo
-                        </label>
-                        <!-- Tem que colocar isso em um js depois, pra aparecer quando o journal não existir-->
                         <div class="separator separator2">Autores</div>
                         <p class="line-field no-bottom-margin">
                         <table class="autor-table">
@@ -127,10 +123,11 @@
                                     <input class="" data-provide="typeahead" type="text" size="7" name="autor-busca" id="initialsname"/>
                                 </td>
                                 <td>
-                                    <input type="text" class="noClickSubmit adicionar-autor" />
+                                    <input type="text" class="noClickSubmit" id="adicionar-autor"/>
                                 </td>
                             </tr>
                         </table>
+                        <strong class='autor-erro'></strong>
                         <div class="autor-box">
                             <p class="no-bottom-margin autores-selecionados">
                                 <strong>*Autores Selecionados:</strong>
@@ -213,7 +210,7 @@
                     </form>
                 </div>
                 <div class="voltar-box">
-                    <a href="index.html" class="voltar-link">
+                    <a href="index.jsp" class="voltar-link">
                         Voltar para a página de pesquisa
                     </a>
                 </div>
@@ -231,7 +228,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/main.js"></script>
-        <script src="js/teste.js"></script>
+        <script charset="utf-8" src="js/add-properties.js"></script>
         <script src="js/search-author.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/autocomplete.js"></script>

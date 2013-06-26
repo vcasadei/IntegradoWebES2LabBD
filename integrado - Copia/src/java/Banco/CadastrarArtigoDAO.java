@@ -22,7 +22,7 @@ public class CadastrarArtigoDAO {
 
     private Connection conn;
 
-    public CadastrarArtigoDAO(Usuario user) throws PubMedDAOException {
+    public CadastrarArtigoDAO(Usuario user) throws PubMedDAOException, SQLException {
         this.conn = ConnectionPubMed.getConnection(user);
     }
 
@@ -89,46 +89,70 @@ public class CadastrarArtigoDAO {
     public void cadastraArtigo(Article artigo) throws SQLException, PubMedDAOException {
         PreparedStatement ps;
         ArrayList<Journal> retorno = new ArrayList();
-        String chemicals = null, 
-               publicationType = null,
-               meshHeading = null,
-               authorFirstName = null,
-               authorSecondName = null,
-               authorInitials = null,
-               keyword = null;
+        String chemicals = "", 
+               publicationType = "",
+               meshHeading = "",
+               authorFirstName = "",
+               authorSecondName = "",
+               authorInitials = "",
+               keyword = "";
         
-        for (String valor : artigo.getChemical()){
-            chemicals += valor + ";";
+        if(artigo.getChemical() == null){
+            chemicals = null;
+        }else{
+            for (String valor : artigo.getChemical()){
+                chemicals += valor + ";";
+            }
         }
         
-        for (String valor : artigo.getPublicationType()){
-            publicationType += valor + ";";
+        if(artigo.getPublicationType() == null){
+            publicationType = null;
+        }else{
+            for (String valor : artigo.getPublicationType()){
+                publicationType += valor + ";";
+            }
         }
         
-        for(String valor : artigo.getMeshHeading()){
-            meshHeading += valor + ";";
+        if(artigo.getMeshHeading() == null){
+            meshHeading = null;
+        }else{
+            for(String valor : artigo.getMeshHeading()){
+                meshHeading += valor + ";";
+            }
         }
         
-        for(Author valor : artigo.getAutores()){
-            authorFirstName = valor.getForeName()+ ";";
-            authorSecondName = valor.getLastName()+ ";";
-            authorInitials = valor.getInitials() + ";";
+        if(artigo.getAutores() == null){
+            authorFirstName = null;
+            authorSecondName = null;
+            authorInitials = null;
+        }else{
+            for(Author valor : artigo.getAutores()){
+                authorFirstName = valor.getForeName()+ ";";
+                authorSecondName = valor.getLastName()+ ";";
+                authorInitials = valor.getInitials() + ";";
+            }
         }
         
-        for(String valor : artigo.getKeyWord()){
-            keyword += valor + ";";
+        if(artigo.getKeyWord() == null){
+            keyword = null;
+        }else{
+            for(String valor : artigo.getKeyWord()){
+                keyword += valor + ";";
+            }
         }
-        
+
         String SQL = "EXECUTE inserirArticle @titlej = '" + artigo.getJournal().getTitle()+ "', @issn = '" + artigo.getJournal().getISSN()+ "', "
                 + "@abrev = '" + artigo.getJournal().getAbreviation() + "', @nlm = '" + artigo.getJournal().getNlmUniqueID()+ "', "
                 + "@tit = '" + artigo.getTitle() + "', @artid = '" + artigo.getArticleID() + "', @pubsta = '" + artigo.getPublicationStatus() + "',"
                 + "@artdate = '" + artigo.getArticleDate() + "', @pag = '" + artigo.getPagination() + "', @vol = '" + artigo.getVolume() + "',  "
-                + "@issue = '" + artigo.getIssue() + "', @affi = '" + artigo.getAffiliation() + "', @loginu = '" + artigo.getUsername() + "',  "
+                + "@issue = '" + artigo.getIssue() + "', @affi = '" + artigo.getAffiliation() + "',  "
                 + "@resumo = '" + artigo.getResumo() + "', @chemicalList = '" + chemicals + "',  @publicationTypeList = '" + publicationType + "', "
                 + "@meshHeadingList = '" + meshHeading + "', @authorNameList = '" + authorFirstName + "', @authorLNameList = '" + authorSecondName + "',  "
                 + "@authorInitialsList = '" + authorInitials + "', @keyWordList = '" + keyword + "'";
         ps = conn.prepareCall(SQL);
-        ResultSet rs = ps.executeQuery();
+        ResultSet rs = null;
+        
+        ps.execute();
         ConnectionPubMed.close(conn, ps, rs);
     }
 }

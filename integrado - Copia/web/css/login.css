@@ -215,7 +215,7 @@ input {
 	text-align: center;
 }
 
-.btn-cadastrar {
+.btn-logar {
 	border-radius: 4px;
 	font-size: 17px;
 	margin-top: 20px;
@@ -226,7 +226,7 @@ input {
 	color: white;
 }
 
-.btn-cadastrar:hover {
+.btn-logar:hover {
 	background-color: #26426d;
     cursor: pointer;
 }

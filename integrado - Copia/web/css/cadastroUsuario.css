@@ -271,8 +271,3 @@ input {
 .footer-container{
     position: absolute; 
 }
-
-#msg{
-    color: red;
-    text-align: center;
-}

@@ -25,7 +25,7 @@ public class BuscaArtigosDAO {
     /*Atributo da conexão*/
     private Connection conn;
 
-    public BuscaArtigosDAO(Usuario usuario) throws PubMedDAOException {
+    public BuscaArtigosDAO(Usuario usuario) throws PubMedDAOException, SQLException {
         /*Estabele conexão com o banco*/
         this.conn = ConnectionPubMed.getConnection(usuario);
     }

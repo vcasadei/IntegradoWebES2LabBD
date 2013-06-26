@@ -4,8 +4,9 @@
  */
 package Servlet;
 
-import Banco.CadastrarUsuarioDAO;
+import Banco.BuscaDadosJournalDAO;
 import Banco.PubMedDAOException;
+import Bean.Journal;
 import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Caah
+ * @author Ian
  */
-public class CadastrarUsuarioComum extends HttpServlet {
+public class CadBuscaJournalTitulo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +43,10 @@ public class CadastrarUsuarioComum extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarUsuario</title>");
+            out.println("<title>Servlet CadBuscaJournalTitulo</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CadBuscaJournalTitulo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -81,38 +82,32 @@ public class CadastrarUsuarioComum extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
-            String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
+            String title = request.getParameter("journalTitle");
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05", "bananassaoazuis");
+            Journal journal;
+            BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
+            journal = cadArtigo.buscaJournalTitulo(title);
+            String dados;
 
-            CadastrarUsuarioDAO cad = new CadastrarUsuarioDAO();
+            if (journal != null) {
+                dados = journal.getNlmUniqueID() + "|@" + journal.getISSN() + "|@" + journal.getTitle() + "|@" + journal.getAbreviation();
+            } else {
+                dados = "Vazio";
+            }
 
-            cad.cadastrarComum(new Usuario(login, senha));
-
-            /*Manda códgo de msg de usuário cadastrado com sucesso*/
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter writer = response.getWriter();
-            writer.print("1");
+            writer.print(dados);
             writer.close();
 
-        } catch (PubMedDAOException ex) {
-            Logger.getLogger(CadastrarUsuarioComum.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 50000) {
-                /*Manda pra aplicação o resultado de que o login já existe*/
-                response.setContentType("text/html;charset=UTF-8");
-                PrintWriter writer = response.getWriter();
-                writer.print("2");
-                writer.close();
-            } else {
-                /*Manda msg de usuário cadastrado com sucesso*/
-                response.setContentType("text/html;charset=UTF-8");
-                PrintWriter writer = response.getWriter();
-                writer.print("0");
-                writer.close();
-            }
+
+        } catch (PubMedDAOException e) {
+            Logger.getLogger(CadBuscaJournalTitulo.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        } catch (SQLException e) {
+            Logger.getLogger(CadBuscaJournalTitulo.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
         }
     }
 

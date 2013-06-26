@@ -52,8 +52,6 @@
                            <input class="radios" type="radio" name="tipo" value="titulo" checked/>Título
                            <input class="radios" type="radio" name="tipo" value="keyword"/>Palavra-chave
                        </p>
-                       
-                       
                        <input type="text" data-provide="typeahead" name="search" id="search" class="search-edt" autocomplete="off" placeholder="Digite aqui parte do título de um artigo"/>
                        <input type="hidden" name="pagina" value="1"/>
                        <input type="hidden" name="qtdePaginas" value="0"/>
@@ -63,7 +61,6 @@
                    <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
                        <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
-                            
                             <label for="journal-title-edt">Titulo </label>
                             <input type="text" autocomplete="off" data-provide="typeahead" name="journal-title-edt" id="journalTitle" class="journal-title-edt noEnterSubmit" placeholder=""/>
                             

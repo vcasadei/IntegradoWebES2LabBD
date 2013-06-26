@@ -136,6 +136,10 @@ input {
 	text-align: center;
 }
 
+.autor-erro{
+    text-align: center;
+}
+
 .tr-labels{
 	margin-bottom: 0px;
 	padding-bottom: 0px;
@@ -159,7 +163,7 @@ input {
 .adicionar-mesh,
 .adicionar-chemical,
 .adicionar-pubtype,
-.adicionar-autor{
+#adicionar-autor{
 	background-image: url('../img/add-btn.png');
 	border: 0px;
 	width: 25px;
@@ -173,7 +177,7 @@ input {
 .adicionar-mesh:hover,
 .adicionar-chemical:hover,
 .adicionar-pubtype:hover,
-.adicionar-autor:hover {
+#adicionar-autor:hover {
 	cursor: pointer;
 }
 
@@ -214,7 +218,8 @@ input {
 .keyword-erro,
 .mesh-erro,
 .chemical-erro,
-.pubtype-erro{
+.pubtype-erro,
+.autor-erro{
 	display: none;
 	margin-left: 15px;
 	text-decoration: none;
