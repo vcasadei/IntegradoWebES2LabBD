@@ -5,47 +5,32 @@ $t(document).ready(
    function()
    {
        $t('#username-edt').keypress(function(e){
-            if (e.which !== 13) {
+        if (e.which !== 13) {
 
-                $t('#username-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-        });
+            $t('#username-edt').css('box-shadow', '0px 0px 0px 0px #999999');
+        };
         
-        $t('#password-edt').keypress(function(e){
-            if (e.which !== 13) {
-
-                $t('#password-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-        });
-        
-        $t('#password-conf-edt').keypress(function(e){
-            if (e.which !== 13) {
-
-                $t('#password-conf-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-
-        });
+    });
 
     
       $t("#username-edt").change( validate.controls.login);
       $t("#password-edt").change( validate.controls.senha);
-      $t(".btn-cadastrar").click(
+      $t("#btn-cadastrar").click(
          function( event)
          {
+             $t("#btn-cadastrar").blur();
              console.log("ahoy");
             event.preventDefault();
             if( validate.all())
             {
+                $t('#msg').html('');
 //                $t('.cadastra-usuario-form').submit();
                 $t("#btn-cadastrar").blur();
-
-
-                $t('#msg').html('');
                 $t.ajax({
                     type: "POST",
-                    url: "CadastrarUsuario",
+                    url: "FazerLogin",
                     dataType: "text",
-                    data: {login: $t('#username-edt').val(), senha: $t('#password-edt').val(), tipo: $t('#user-type-edt').val()}
+                    data: {login: $t('#username-edt').val(), senha: $t('#password-edt').val()}
                 }).done(function(data) {
                     status = data;
                     if (status == "2") {
@@ -53,15 +38,13 @@ $t(document).ready(
                     } else if (status == "0") {
                         alert("Houve um erro, tente novamente mais tarde");
                     } else {
-                        window.location.href='Login.html';
-                        alert("Usuário cadastrado com sucesso!");
+                        window.location.href='index.jsp';
+                        alert("Login efetuado com sucesso!");
                     }
-                }); 
-
+                });
 
                
             } else {
-                $t("#search").css('box-shadow', '0px 0px 1px 1px #FF3300');
                 $t("#btn-cadastrar").blur();
             }
          });
@@ -148,7 +131,6 @@ var validate =
            senha: 
            function(){
                 var $tinput = $t('#password-edt');
-                var $tconf = $t('#password-conf-edt');
                var isValid = true;
 
                 function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
@@ -156,15 +138,12 @@ var validate =
                 function trim(texto) { return ltrim(rtrim(texto)); }
 
                 var aux = trim($tinput.val());
-                var aux2 = trim($tconf.val());
                 if(aux === "" || aux == null){
                     
                     $tinput.val('');
                     isValid =  false;
                     $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tinput.attr('placeholder', 'As senha digitadas não são iguais');
-                    $tconf.attr('placeholder', 'As senha digitadas não são iguais');
+                    $tinput.attr('placeholder', 'Informe uma senha');
                     
     
                     } else {
@@ -173,14 +152,12 @@ var validate =
                                 $tinput.attr('placeholder','Senha Fraca');
                                 $t('#msg').html('*A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial');
                                 $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                                $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300');
                                 isValid = false;
                              } else {
                                 $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
-                                $tconf.css('box-shadow', '0px 0px 0px 0px #999999');
                                 $t(".tooltip span").css('display', 'none');
-                                $t('#msg').html('');
 
+                                $t('#msg').html('');
                                 isValid =  true;
 
                                     return isValid;     

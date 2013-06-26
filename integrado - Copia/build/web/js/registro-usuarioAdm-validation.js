@@ -36,12 +36,11 @@ $t(document).ready(
             event.preventDefault();
             if( validate.all())
             {
-                $t("#search").css('box-shadow', '0px 0px 0px 0px #999999');
 //                $t('.cadastra-usuario-form').submit();
-$t("#btn-cadastrar").blur();
+                $t("#btn-cadastrar").blur();
 
 
-
+                $t('#msg').html('');
                 $t.ajax({
                     type: "POST",
                     url: "CadastrarUsuario",
@@ -114,20 +113,35 @@ var validate =
                 function trim(texto) { return ltrim(rtrim(texto)); }
 
                 var aux = trim($tinput.val());
+                
                 if(aux === "" || aux == null){
-                    
                     $tinput.val('');
+                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
+                    $tinput.attr('placeholder','Insira o username');
                     isValid =  false;
-                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');    
-    
+                      
+                } else {
+                    if( $tinput.val().length > 20) {
+                        $tinput.val('');
+                        
+                        $tinput.attr('placeholder','Username deve conter menos que 20 caracteres');
+                        $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
+                        isValid =  false;
                     } else {
-                        $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
+                        if( $tinput.val().match(/^[0-9]/) !== null){
+                            $tinput.val('');
+                            $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                            $tinput.attr('placeholder','Não deve começar com números');
+                             
+                            isValid = false;
+                         } else {
+                             isValid = true;
 
-                           
-
-                        isValid =  true;
-
-                            return isValid;          
+                            return isValid;
+                         }
+                    
+                    
+                    }
                 }
             },
                
@@ -151,21 +165,29 @@ var validate =
                     $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
                     $tinput.attr('placeholder', 'As senha digitadas não são iguais');
                     $tconf.attr('placeholder', 'As senha digitadas não são iguais');
-                    if(aux != aux2){
-                        $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                        $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                        $tinput.attr('placeholder', 'As senha digitadas não são iguais');
-                        $tconf.attr('placeholder', 'As senha digitadas não são iguais');
-                    }
+                    
     
                     } else {
+                            if( aux.match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/) === null){
+                                isValid =  false;
+                                $tinput.attr('placeholder','Senha Fraca');
+                                $t('#msg').html('*A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial');
+                                $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
+                                $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                                isValid = false;
+                             } else {
+                                $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
+                                $tconf.css('box-shadow', '0px 0px 0px 0px #999999');
+                                $t(".tooltip span").css('display', 'none');
+                                $t('#msg').html('');
 
-                          
+                                isValid =  true;
 
-                        isValid =  true;
-
-                            return isValid;          
-                }
+                                    return isValid;     
+                             }
+                        }
+                         
+                
             }
          };
 
