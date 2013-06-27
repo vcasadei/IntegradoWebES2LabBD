@@ -56,9 +56,9 @@
                             <label for="username-edt">Login:</label>
                             <input type="text" id="username-edt" class="username-edt noEnterSubmit" autocomplete="off" placeholder=""/>
                             <input type="text" class="noClickSubmit pesquisar-login"/>
-                        <div id="msg"></div>
+                        <div class="control-server ok"></div>
 
-                        <label for="user-type-edt">Tipo de Usuário:</label>
+                        <label class="user-type" for="user-type-edt">Tipo de Usuário:</label>
                         <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit" disabled>
                             <option value="administrador">Administrador</option>
                             <option value="pesquisador">Pesquisador</option>

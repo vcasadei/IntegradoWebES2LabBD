@@ -921,3 +921,34 @@ section {
 }
 
 
+.pesquisar-login{
+	background-image: url('../img/search-small.png');
+	border: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.pesquisar-login:hover {
+	cursor: pointer;
+}
+
+.user-type {
+    margin-left: 10%;
+}
+
+
+.btn-alterarTipo{
+    border-radius: 4px;
+    font-size: 17px;
+    margin-top: 20px;
+    width: 30%;
+    background-color: #20385e;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    color: white;
+}
+
+.btn-alterarTipo:hover{
+    background-color: #26426d;
+    cursor: pointer;
+}

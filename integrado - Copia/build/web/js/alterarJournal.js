@@ -49,3 +49,22 @@ $('.pesquisar-issn').click(function() {
         $('#form-alt-journal').html(data);
     });
 });
+
+$('.pesquisar-login').click(function() {
+
+    /*Limpa a div que exibe mensagem de erro*/
+    $('#msg').html("");
+    $.ajax({
+        type: "GET",
+        url: "BuscaUsuario",
+        dataType: "html",
+        data: {login: $('#nlmuniqueid').val()}
+    }).done(function(data) {
+        var status = data;
+        if (status !== "1"){
+            $('#user-type-edt').html(data);
+        } else {
+            $('#msg').html("Login Inexistente!");
+        }
+    });
+});

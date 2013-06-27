@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
+        
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/menu.css">
@@ -22,8 +22,8 @@
 
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-
+        
+        
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -33,14 +33,12 @@
         <%
             List<Article> resultList = (List<Article>) request.getAttribute("listaArtigos");
             int num_paginas = (Integer) request.getAttribute("qtdePaginas");
-            if (num_paginas > 15) {
-                num_paginas = 15;
-            }
+            if (num_paginas > 15) num_paginas = 15;
             int pagina_atual = (Integer) request.getAttribute("paginaAtual");
             String busca = (String) request.getAttribute("search");
             String tipo = (String) request.getAttribute("tipo");
         %>
-
+        
         <div class="header-container">
             <header class="wrapper clearfix">
                 <a class="title" href="index.jsp"></a>
@@ -74,17 +72,17 @@
             <div class="main wrapper clearfix">
                 <div class="form-box">
                     <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-s">
-                        <p id="radio">
-                            <input class="radios" type="radio" name="tipo" value="titulo" <% if (tipo.equals("titulo")) {%> checked <% }%>/>Título
-                            <input class="radios" type="radio" name="tipo" value="keyword" <% if (tipo.equals("keyword")) {%> checked <% }%>/>Palavra-chave
-                        </p>
-                        <input type="text" name="search" id="caixa-pesquisa" class="search-edt" value="<%= busca%>" autocomplete="off"/>
-                        <input id="pag_atual" type="hidden" name="pagina" value="<%= pagina_atual%>"/>
-                        <input id="qtde_pag" type="hidden" name="qtdePaginas" value="<%= num_paginas%>"/>
-                        <input type="text" class="search-btn" id="btn-pesquisa"/>
-                    </form>
-                    <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
-                        <div id="form-pesquisa-avancada">
+                       <p id="radio">
+                           <input class="radios" type="radio" name="tipo" value="titulo" <% if(tipo.equals("titulo")) { %> checked <% }%>/>Título
+                           <input class="radios" type="radio" name="tipo" value="keyword" <% if(tipo.equals("keyword")) { %> checked <% }%>/>Palavra-chave
+                       </p>
+                       <input type="text" name="search" id="caixa-pesquisa" class="search-edt" value="<%= busca%>" autocomplete="off"/>
+                       <input id="pag_atual" type="hidden" name="pagina" value="<%= pagina_atual%>"/>
+                       <input id="qtde_pag" type="hidden" name="qtdePaginas" value="<%= num_paginas%>"/>
+                       <input type="text" class="search-btn" id="btn-pesquisa"/>
+                   </form>
+                   <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
+                       <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
                             <label for="journal-title-edt">Titulo </label>
                             <input type="text" name="journal-title-edt" class="journal-title-edt noEnterSubmit" placeholder=""/>
@@ -98,65 +96,66 @@
                             <div class="btn-pesquisar-box">
                                 <input type="submit" class="btn-pesquisar" value="Pesquisar">
                             </div>
-                        </div>
+                       </div>
                     </form>
-                    <div class="avancada-box"><strong id="avancada">Busca Avançada</strong></div>
-                    <div class="avancada-box"><strong id="simples">Busca Simples</strong></div>
+                   <div class="avancada-box"><strong id="avancada">Busca Avançada</strong></div>
+                   <div class="avancada-box"><strong id="simples">Busca Simples</strong></div>
 
                 </div>
                 <div class="main-result-box">
                     <%
-                        if (resultList.isEmpty()) {
-                    %> <h3>Nenhum Resultado Encontrado </h3><%                            } else {
-                    %> <h3 id="results-label">Resultados Encontrados (página <%= pagina_atual%> de <%= num_paginas%>)</h3> <%
-                    %> <div class="pagination">
-                        <%if (pagina_atual == 1) {%>
-                        <strong class="pag_atual">< Anterior</strong>
-                        <%} else {%>
-                        <strong class="anterior pag_item">< Anterior</strong>
-                        <% }%>
-                        <% for (int i = 0; i < num_paginas; i++) {
-                                if (i + 1 == pagina_atual) {
-                        %> <strong class="pag_atual"><%= i + 1%></strong> <%
-                            } else {
-                        %> <strong class="pag_item pag_goto"><%= i + 1%></strong> <%
-                                            }
-                                        }%>
-                        <%if (pagina_atual == num_paginas) {%>
-                        <strong class="pag_atual">Próximo ></strong>
-                        <%} else {%>
-                        <strong class="proximo pag_item">Próximo ></strong>
-                        <% }%>
-                    </div> <%
-
-                    %> <article class="main-results"> <%
-                        for (int i = 0; i < resultList.size(); i++) {
-                        %><section class="result" onclick="resultClick(this)">
-                            <h3> <%= resultList.get(i).getTitle()%> </h3>
-                            <p> <%= resultList.get(i).getResumo()%> </p>
-                            <p class="articleID"> <%= resultList.get(i).getArticleID()%> </p>
-                        </section><%
+                        if (resultList.isEmpty()){
+                            %> <h3>Nenhum Resultado Encontrado </h3><%
+                        } else {
+                            %> <h3 id="results-label">Resultados Encontrados (página <%= pagina_atual%> de <%= num_paginas%>)</h3> <%
+                            %> <div class="pagination">
+                                <%if (pagina_atual == 1){%>
+                                <strong class="pag_atual">< Anterior</strong>
+                                <%} else {%>
+                                <strong class="anterior pag_item">< Anterior</strong>
+                                <% } %>
+                                <% for(int i = 0; i < num_paginas; i++) {
+                                    if (i+1 == pagina_atual) {
+                                    %> <strong class="pag_atual"><%= i+1 %></strong> <%    
+                                    } else {
+                                    %> <strong class="pag_item pag_goto"><%= i+1 %></strong> <%
+                                    }
+                                }%>
+                                <%if (pagina_atual == num_paginas){%>
+                                <strong class="pag_atual">Próximo ></strong>
+                                <%} else {%>
+                                <strong class="proximo pag_item">Próximo ></strong>
+                                <% } %>
+                            </div> <%
+                            
+                            %> <article class="main-results"> <%
+                            for(int i = 0; i < resultList.size(); i++){
+                                %><section class="result" onclick="resultClick(this)">
+                                    <h3> <%= resultList.get(i).getTitle()%> </h3>
+                                    <p> <%= resultList.get(i).getResumo()%> </p>
+                                    <p class="articleID"> <%= resultList.get(i).getArticleID()%> </p>
+                                </section><%
                             }
-                        %></article><%
-                    %> <div class="pagination">
-                        <%if (pagina_atual == 1) {%>
-                        <strong class="pag_atual">< Anterior</strong>
-                        <%} else {%>
-                        <strong class="anterior pag_item">< Anterior</strong>
-                        <% }%>
-                        <% for (int i = 0; i < num_paginas; i++) {
-                                if (i + 1 == pagina_atual) {
-                        %> <strong class="pag_atual"><%= i + 1%></strong> <%
-                            } else {
-                        %> <strong class="pag_item pag_goto"><%= i + 1%></strong> <%
-                                            }
-                                        }%>
-                        <%if (pagina_atual == num_paginas) {%>
-                        <strong class="pag_atual">Próximo ></strong>
-                        <%} else {%>
-                        <strong class="proximo pag_item">Próximo ></strong>
-                        <% }%>
-                    </div> <%
+                            %></article><%
+                            %> <div class="pagination">
+                                <%if (pagina_atual == 1){%>
+                                <strong class="pag_atual">< Anterior</strong>
+                                <%} else {%>
+                                <strong class="anterior pag_item">< Anterior</strong>
+                                <% } %>
+                                <% for(int i = 0; i < num_paginas; i++) {
+                                    if (i+1 == pagina_atual) {
+                                    %> <strong class="pag_atual"><%= i+1 %></strong> <%    
+                                    } else {
+                                    %> <strong class="pag_item pag_goto"><%= i+1 %></strong> <%
+                                    }
+                                }%>
+                                <%if (pagina_atual == num_paginas){%>
+                                <strong class="pag_atual">Próximo ></strong>
+                                <%} else {%>
+                                <strong class="proximo pag_item">Próximo ></strong>
+                                <% } %>
+                            </div> <%
                         }
                     %>
                 </div>
