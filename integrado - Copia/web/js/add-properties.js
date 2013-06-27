@@ -338,31 +338,60 @@ $('#adicionar-autor').focus(function() {
 });
 
 function adicionaAutor(){
-    var autorFName = document.getElementById('forename');
-    var autorLName = document.getElementById('lastname');
-    var autorIName = document.getElementById('initialsname');
-    var FName = autorFName.value;
-    var SName = autorLName.value;
-    var IName = autorIName.value;
+    var autorFName = $('#forename');
+    var autorLName = $('#lastname');
+    var autorIName = $('#initialsname');
+    var FName = autorFName.val();
+    var SName = autorLName.val();
+    var IName = autorIName.val();
 
     var err = document.getElementsByClassName('autor-erro')[0];
     err.style.display = 'none';
 
     if (FName.length <= 0 || SName.length <=0 || IName.length <= 0) {
-            err.style.display = 'block';
-            err.innerHTML = 'Preencha todos os campos';
+            autorFName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            autorLName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            autorIName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            $('.control-authors').html('Por Favor, preencha todos os campos');
+            $('.ccontrol-authors').removeClass('ok').addClass( 'error', 300 );
             return;
     };
 
+    if (FName.length > 0 || SName.length > 0 || IName.length > 0) {
+            autorFName.css('box-shadow', '0px 0px 0px 0px #999999');
+            autorLName.css('box-shadow', '0px 0px 0px 0px #999999');
+            autorIName.css('box-shadow', '0px 0px 0px 0px #999999');
+            $('.control-authors').html('');
+            $('.control-authors').removeClass('error').addClass( 'ok', 300 );
+    };
+    
+    if (FName.match(/[0-9]/) !== null || SName.match(/[0-9]/) !== null || IName.match(/[0-9]/) !== null) {
+            autorFName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            autorLName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            autorIName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+            $('.control-authors').html('Os campos não devem conter números');
+            $('.control-authors').removeClass('ok').addClass( 'error', 300 );
+            return;
+    } else {
+        autorFName.css('box-shadow', '0px 0px 0px 0px #999999');
+        autorLName.css('box-shadow', '0px 0px 0px 0px #999999');
+        autorIName.css('box-shadow', '0px 0px 0px 0px #999999');
+        $('.control-authors').html('');
+        $('.control-authors').removeClass('error').addClass( 'ok', 300 );
+    };
+    
     if (existeAutor(FName, SName, IName)){
-            err.style.display = 'block';
-            err.innerHTML = 'Autor já adicionado';
+        autorFName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+        autorLName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+        autorIName.css('box-shadow', '0px 0px 1px 1px #FF3300');
+        $('.control-authors').html('Este autor já foi adicionado');
+        $('.control-authors').removeClass('ok').addClass( 'error', 300 );
             return;
     };
 
-    autorFName.value = '';
-    autorLName.value = '';
-    autorIName.value = '';
+    autorFName.val('');
+    autorLName.val('');
+    autorIName.val('');
 
     var ul = document.getElementsByClassName('selecionados-list')[0];
     var li = document.createElement('li');
@@ -374,7 +403,7 @@ function adicionaAutor(){
     remover.innerHTML = '[remover]';
     remover.setAttribute('class','chemical-remover');
     remover.setAttribute('onclick','removeAutor(this)');
-    li.setAttribute('class','chemical-item');
+    li.setAttribute('class','author-item');
     li.innerHTML = FName + " " + SName + " (" + IName + ")";
     li.appendChild(remover);
     inputFName.setAttribute('type', 'hidden');

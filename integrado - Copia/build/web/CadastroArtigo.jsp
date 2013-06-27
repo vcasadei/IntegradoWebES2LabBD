@@ -54,12 +54,14 @@
                     <form class="form-cadastro" action="CadastrarArtigo" method="POST">
                         <div class="separator separator1">Informações Gerais</div>
                         <p class="line-field">
-                            <label class="label-s" for="titulo">*Título: </label>
-                            <input class="text-s" type="text" name="titulo" required/>
+                            <div class="control-titulo ok"></div>
+                            <label id="title-label" class="label-s" for="titulo">*Título: </label>
+                            <input id="title-article" class="text-s" type="text" name="titulo" />
                         </p>
                         <p class="side-fields">
-                            <label class="label-s" for="articleId">*ID do Artigo: </label>
-                            <input class="text-inline" type="text" name="articleId" required/>
+                            <div class="control-id-article ok"></div>
+                            <label id="id-article-label" class="label-s" for="articleId">*ID do Artigo: </label>
+                            <input id="id-article" class="text-inline" type="text" name="articleId" />
                             <label class="label-s label-right" for="data">Data de Publicação: </label>
                             <input class="date-field text-right" type="date" name="data"/>
                         </p>
@@ -74,20 +76,34 @@
                             <input class="text-inline text-right" type="text" name="affiliation"/>
                         </p>
                         <p class="resumo-field">
-                            <label class="label-s" for="resumo">*Resumo: </label>
-                            <textarea class="resumo" rows="6" cols="90" name="resumo"></textarea>
+                            <div class="control-abstract ok"></div>
+                            <label id="resumo-label" class="label-s" for="resumo">*Resumo: </label>
+                            <textarea id="abstract-article" class="resumo" rows="6" cols="90" name="resumo"></textarea>
                         </p>
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
-                            <label class="label-s" for="nlmuniqueid">NLM (ID Único): </label>
-                            <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID" required value=""/>
-                            <input type="text" class="noClickSubmit pesquisar-nlm"/>
-                            <label class="label-s label-right" for="issn">ISSN: </label>
-                            <input class="text-right issn-edt" data-provide="typeahead" type="text" name="issn" id="issn" placeholder="Busque pelo ISSN" required value=""/>
-                            <input type="text" class="noClickSubmit pesquisar-issn"/>
+                        <table class="id-nlm">
+                            <tr>
+                                <td>
+                                    <div class="control-nlm ok"></div>
+                                    <label id="nlm-id-label" class="label-s" for="nlmuniqueid">NLM (ID Único): </label>
+                                    <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID"  value=""/>                           
+                                    <input type="text" class="noClickSubmit pesquisar-nlm"/>
+                                </td>
+                                <td>
+                                    <div class="control-issn-journal ok"></div>
+                                    <label id="issn-label" class="label-s label-right" for="issn">ISSN: </label>
+                                    <input class="text-right issn-edt" data-provide="typeahead" type="text" name="issn" id="issn" placeholder="Busque pelo ISSN"  value=""/>
+                                    <input type="text" class="noClickSubmit pesquisar-issn"/>
+                                </td>
+                            </tr>
+                        </table>
+                            
+                            
                         </p>
                         <p class="line-field">
-                            <label class="label-s" for="journalTitle">Título da Revista: </label>
+                            <div class="control-journal-title ok"></div>
+                            <label id="journal-title-label" class="label-s" for="journalTitle">Título da Revista: </label>
                             <input class="text-s journal" data-provide="typeahead" type="text" name="journalTitle" id="journalTitle" placeholder="Busque pelo título" value=""/>
                             <input type="text" class="noClickSubmit pesquisar-title"/>
                         </p>
@@ -100,15 +116,20 @@
                         </label>
                         <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>
-                            <input class="text-inline" type="text" name="pagination" size="10" >
+                            <input class="text-inline" type="text" id="pagination" name="pagination" size="10" >
                             <label class="label-s label-right" for="volume">Volume: </label>
-                            <input class="text-inline" type="text" name="volume" size="10" >
+                            <input class="text-inline" type="text" id="volume" name="volume" size="10" >
                             <label class="label-s label-right" for="issue">Issue: </label>
-                            <input class="text-inline" type="text" name="issue" size="10" >
+                            <input class="text-inline" type="text" id="issue" name="issue" size="10" >
                         </p>
                         <p></p>
                         <div class="separator separator2">Autores</div>
                         <p class="line-field no-bottom-margin">
+                            
+                        <div class="control-author-name ok"></div>
+                        <div class="control-author-lastname ok"></div>
+                        <div class="control-author-initials ok"></div>
+                            
                         <table class="autor-table">
                             <tr class="tr-labels">
                                 <td></td>
@@ -136,7 +157,9 @@
                             </tr>
                         </table>
                         <strong class='autor-erro'></strong>
+                        <div class="control-authors ok"></div>
                         <div class="autor-box">
+                            
                             <p class="no-bottom-margin autores-selecionados">
                                 <strong>*Autores Selecionados:</strong>
                             </p>
@@ -212,6 +235,7 @@
                             </ul>
                             <div class="separator separator2"></div>
                         </div>
+                        <div class="control-cadastro ok"></div>
                         <div class="btn-cadastrar-box">
                             <input type="submit" class="btn-cadastrar" value="Cadastrar">
                         </div>
@@ -237,14 +261,12 @@
 
         <script src="js/main.js"></script>
         <script charset="utf-8" src="js/add-properties.js"></script>
-        <script src="js/search-author.js"></script>
+        
+<!--        <script src="js/search-author.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/autocomplete.js"></script>
-        <script src="js/buscarJournal.js"></script>
-
-        <script>
-            $(document).ready(function() {
-            });
-        </script>
+        <script src="js/buscarJournal.js"></script>-->
+<script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </body>
 </html>

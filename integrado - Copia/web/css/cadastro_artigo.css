@@ -282,3 +282,93 @@ input {
 .footer-container{
     position: relative;
 }
+
+#resumo-label{
+    margin-left:4%;
+}
+
+#title-label{
+    margin-left:6%;
+}
+
+#id-article-label{
+    margin-left:8%;
+}
+
+#journal-title-label{
+    margin-left:6%;
+}
+
+
+
+.id-nlm{
+    margin-left: 10%;
+}
+
+.control-titulo{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:2%;
+    width:94%;
+}
+
+.control-id-article{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:2%;
+    width:46%; 
+}
+
+.control-abstract{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:2%;
+    width:94%;
+}
+
+.control-nlm{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:2%;
+    width:100%;   
+}
+
+.control-issn-journal{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:8%;
+    width:100%;
+    
+}
+
+.control-journal-title,
+.control-author-name,
+.control-author-lastename,
+.control-author-initials,
+.control-authors{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-left:2%;
+    margin-top: 2%;
+    width:94%;
+}
+
+.control-cadastro{
+    color: #b94a48;
+    background-color: #f2dede;
+    border: 2px solid #eed3d7;
+    text-align: center;
+    margin-top:2%;
+}
