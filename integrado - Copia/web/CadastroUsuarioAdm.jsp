@@ -54,11 +54,14 @@
                         
                         <p class="side-fields">
 
-                        <label for="username-edt">Login:</label>
+                        <div class="control-username ok"></div>
+                            <label class="username-label" for="username-edt">Login:</label>
                             <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-edt">Senha:</label>
+                            <div  class="control-password ok"></div>
+                            <label class="password-label" for="password-edt">Senha:</label>
                             <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
-                            <label for="password-conf-edt">Confirmação da Senha:</label>
+                            <div  class="control-password-conf ok"></div>
+                            <label class="passwordconf-label" for="password-conf-edt">Confirmação da Senha:</label>
                             <input type="password" name="password-conf-edt" id="password-conf-edt" class="password-conf-edt noEnterSubmit" placeholder=""/><br><br>
 
                         
@@ -70,7 +73,7 @@
                         <br>
                         
                         </p>
-                        <div id="msg"></div>
+                        <div class="control-server ok"></div>
                         <div class="btn-cadastrar-box">
                             <input type="text" class="btn-cadastrar" id="btn-cadastrar" value="Cadastrar">
                         </div>
@@ -88,6 +91,7 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
         
         <script src="./js/registro-usuarioAdm-validation.js"></script>

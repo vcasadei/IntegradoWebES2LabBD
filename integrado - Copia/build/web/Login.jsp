@@ -46,16 +46,17 @@
                         <div class="separator separator2"></div>
                         
                         <p class="side-fields">
-                            <label for="username-edt">Login:</label>
+                        <div class="control-login ok"></div>
+                            <label class="login-label" for="username-edt">Login:</label>
                         <input type="text" id="username-edt" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                        <label for="password-edt">Senha:</label>
+                        <label class="pass-label" for="password-edt">Senha:</label>
                         <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br>
                         </p>
                         
                         
                         <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="text" id="btn-cadastrar" class="btn-cadastrar" value="Login">
+                            <input type="text" id="btn-logar" class="btn-logar" value="Login">
                         </div>
                     </form>
                     <p id="link-comum">Não possui login? <a href="CadastroUsuario.jsp">Registre um novo usuário aqui</a>.</p>
@@ -73,6 +74,7 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
         
         <script src="./js/login-validation.js"></script>

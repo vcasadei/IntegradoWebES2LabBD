@@ -5,30 +5,18 @@ $t(document).ready(
    function()
    {
        $t('#username-edt').keypress(function(e){
-            if (e.which !== 13) {
+        if (e.which !== 13) {
 
-                $t('#username-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-        });
+            $t('#username-edt').css('box-shadow', '0px 0px 0px 0px #999999');
+        };
         
-        $t('#password-edt').keypress(function(e){
-            if (e.which !== 13) {
-
-                $t('#password-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-        });
-        
-        $t('#password-conf-edt').keypress(function(e){
-            if (e.which !== 13) {
-
-                $t('#password-conf-edt').css('box-shadow', '0px 0px 0px 0px #999999');
-            };
-
-        });
+    });
 
     
       $t("#username-edt").change( validate.controls.login);
       $t("#password-edt").change( validate.controls.senha);
+      $t("#password-conf-edt").change( validate.controls.confsenha);
+      
       $t(".btn-cadastrar").click(
          function( event)
          {
@@ -36,11 +24,9 @@ $t(document).ready(
             event.preventDefault();
             if( validate.all())
             {
-//                $t('.cadastra-usuario-form').submit();
-                $t("#btn-cadastrar").blur();
-
-
                 $t('#msg').html('');
+//                $t('.cadastra-usuario-form').submit();
+$t("#btn-cadastrar").blur();
                 $t.ajax({
                     type: "POST",
                     url: "CadastrarUsuario",
@@ -49,20 +35,21 @@ $t(document).ready(
                 }).done(function(data) {
                     status = data;
                     if (status == "2") {
-                        $t('#msg').html("<span>Login já está sendo utilizado!</span>");
+                        $t('.control-server').html('Login já está sendo utilizado!');
+                        $t('.control-server').removeClass('ok').addClass( 'error', 300 );
                     } else if (status == "0") {
-                        alert("Houve um erro, tente novamente mais tarde");
+                        $t('.control-server').html('Houve um erro, tente novamente mais tarde');
+                        $t('.control-server').removeClass('ok').addClass( 'error', 300 );
                     } else {
                         window.location.href='loginCadastro.jsp';
                         alert("Usuário cadastrado com sucesso!");
                     }
-                }); 
-
-
+                });
+                
                
             } else {
-                $t("#search").css('box-shadow', '0px 0px 1px 1px #FF3300');
                 $t("#btn-cadastrar").blur();
+                $t('.control-server').removeClass('error').addClass( 'ok', 300 );
             }
          });
          
@@ -117,26 +104,28 @@ var validate =
                 if(aux === "" || aux == null){
                     $tinput.val('');
                     $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tinput.attr('placeholder','Insira o username');
+                    $t('.control-username').html('Informe seu username');
+                    $t('.control-username').removeClass('ok').addClass( 'error', 300 );
                     isValid =  false;
                       
                 } else {
                     if( $tinput.val().length > 20) {
                         $tinput.val('');
-                        
-                        $tinput.attr('placeholder','Username deve conter menos que 20 caracteres');
+                        $t('.control-username').html('Username deve conter menos que 20 caracteres');
+                        $t('.control-username').removeClass('ok').addClass( 'error', 300 );
                         $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
                         isValid =  false;
                     } else {
                         if( $tinput.val().match(/^[0-9]/) !== null){
                             $tinput.val('');
+                            $t('.control-username').html('Username não deve começar com números');
+                            $t('.control-username').removeClass('ok').addClass( 'error', 300 );
                             $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
-                            $tinput.attr('placeholder','Não deve começar com números');
                              
                             isValid = false;
                          } else {
                              isValid = true;
-
+                             $t('.control-username').removeClass('error').addClass( 'ok', 300 );
                             return isValid;
                          }
                     
@@ -148,7 +137,6 @@ var validate =
            senha: 
            function(){
                 var $tinput = $t('#password-edt');
-                var $tconf = $t('#password-conf-edt');
                var isValid = true;
 
                 function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
@@ -156,35 +144,66 @@ var validate =
                 function trim(texto) { return ltrim(rtrim(texto)); }
 
                 var aux = trim($tinput.val());
-                var aux2 = trim($tconf.val());
                 if(aux === "" || aux == null){
                     
                     $tinput.val('');
                     isValid =  false;
-                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tinput.attr('placeholder', 'As senha digitadas não são iguais');
-                    $tconf.attr('placeholder', 'As senha digitadas não são iguais');
+                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                    $t('.control-password').html('Informe sua senha');
+                    $t('.control-password').removeClass('ok').addClass( 'error', 300 );
                     
     
                     } else {
-                            if( aux.match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/) === null){
+                            if( aux.match(/^.*(?=.{8,})(?=.*\d)(?=.*[A-Z]).*$/) === null){
                                 isValid =  false;
-                                $tinput.attr('placeholder','Senha Fraca');
-                                $t('#msg').html('*A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial');
+                                $t('.control-password').html('A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, um número e um caractere especial');
+                                $t('.control-password').removeClass('ok').addClass( 'error', 300 );
                                 $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                                $tconf.css('box-shadow', '0px 0px 1px 1px #FF3300');
                                 isValid = false;
                              } else {
                                 $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
-                                $tconf.css('box-shadow', '0px 0px 0px 0px #999999');
-                                $t(".tooltip span").css('display', 'none');
+                                $t('.control-password').removeClass('error').addClass( 'ok', 300 );
                                 $t('#msg').html('');
-
                                 isValid =  true;
 
                                     return isValid;     
                              }
+                        }
+                         
+                
+            }, 
+            
+            confsenha: 
+           function(){
+                var $tinput = $t('#password-conf-edt');
+                var $tinputconf = $t('#password-edt');
+               var isValid = true;
+
+                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
+                function rtrim(texto) { return  texto.replace(/[ ]+$t/, ''); }
+                function trim(texto) { return ltrim(rtrim(texto)); }
+
+                var aux = trim($tinput.val());
+                var aux2 = trim($tinputconf.val());
+                if(aux !== aux2){
+                    
+                    $tinput.val('');
+                    isValid =  false;
+                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');  
+                    $t('.control-password-conf').html('As senhas não batem');
+                    $t('.control-password-conf').removeClass('ok').addClass( 'error', 300 );
+                    
+    
+                    } else {
+                           
+                                $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
+                                $t(".tooltip span").css('display', 'none');
+                                $t('.control-password-conf').removeClass('error').addClass( 'ok', 300 );
+                                $t('#msg').html('');
+                                isValid =  true;
+
+                                    return isValid;     
+                             
                         }
                          
                 

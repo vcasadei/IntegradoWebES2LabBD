@@ -18,11 +18,13 @@ $t(document).ready(
       $t("#btn-logar").click(
          function( event)
          {
+             
              $t("#btn-logar").blur();
              console.log("ahoy");
             event.preventDefault();
             if( validate.all())
             {
+                $t('.control-login').removeClass('error').addClass( 'ok', 300 );
                 $t('#msg').html('');
 //                $t('.cadastra-usuario-form').submit();
                 $t("#btn-logar").blur();
@@ -34,7 +36,11 @@ $t(document).ready(
                 }).done(function(data) {
                     status = data;
                     if (status === "0") {
-                        $('#msg').html("<span>Login ou senha inexistentes!</span>");
+                        $t('.control-login').html('Login e/ou senha inválidos');
+                        $t('.control-login').removeClass('ok').addClass( 'error', 300 );
+                        $t("#username-edt").css('box-shadow', '0px 0px 1px 1px #FF3300');
+                        $t("#password-edt").css('box-shadow', '0px 0px 1px 1px #FF3300');
+                                
                     } else {
                         window.location.href = 'index.jsp';
                     }
@@ -43,6 +49,7 @@ $t(document).ready(
                
             } else {
                 $t("#btn-logar").blur();
+                $t('.control-login').removeClass('error').addClass( 'ok', 300 );
             }
          });
          
@@ -97,31 +104,18 @@ var validate =
                 if(aux === "" || aux == null){
                     $tinput.val('');
                     $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tinput.attr('placeholder','Insira o username');
+                    $tinput.attr('placeholder','Informe seu username');
                     isValid =  false;
                       
                 } else {
-                    if( $tinput.val().length > 20) {
-                        $tinput.val('');
-                        
-                        $tinput.attr('placeholder','Username deve conter menos que 20 caracteres');
-                        $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                        isValid =  false;
-                    } else {
-                        if( $tinput.val().match(/^[0-9]/) !== null){
-                            $tinput.val('');
-                            $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
-                            $tinput.attr('placeholder','Não deve começar com números');
-                             
-                            isValid = false;
-                         } else {
+                   
                              isValid = true;
 
                             return isValid;
-                         }
+                         
                     
                     
-                    }
+            
                 }
             },
                
@@ -140,25 +134,20 @@ var validate =
                     $tinput.val('');
                     isValid =  false;
                     $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                    $tinput.attr('placeholder', 'Informe uma senha');
+                    $tinput.attr('placeholder', 'Informe sua senha');
+
                     
     
                     } else {
-                            if( aux.match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/) === null){
-                                isValid =  false;
-                                $tinput.attr('placeholder','Senha Fraca');
-                                $t('#msg').html('*A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial');
-                                $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                                isValid = false;
-                             } else {
+                            
                                 $tinput.css('box-shadow', '0px 0px 0px 0px #999999');
                                 $t(".tooltip span").css('display', 'none');
-
+                                
                                 $t('#msg').html('');
                                 isValid =  true;
 
                                     return isValid;     
-                             }
+                             
                         }
                          
                 
