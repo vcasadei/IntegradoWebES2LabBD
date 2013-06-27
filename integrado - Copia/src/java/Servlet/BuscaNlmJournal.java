@@ -82,13 +82,14 @@ public class BuscaNlmJournal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("Aqui4");
 
         try {
             List<String> listaNlmUniqueID;
             String nlmUniqueID;
             int cont = 0;
             BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "nlmJournal");
-
+            
             nlmUniqueID = request.getParameter("nlm");
             listaNlmUniqueID = busca.buscaAtributosAutoComplete(nlmUniqueID);
 

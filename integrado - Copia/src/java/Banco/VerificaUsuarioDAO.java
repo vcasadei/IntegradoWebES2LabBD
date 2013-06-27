@@ -6,9 +6,8 @@ package Banco;
 
 import Bean.Usuario;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.CallableStatement;
 
 /**
  *
@@ -20,32 +19,29 @@ public class VerificaUsuarioDAO {
     private Connection conn;
 
     public VerificaUsuarioDAO(Usuario usuario) throws PubMedDAOException, SQLException {
+        
+        try {
         /*Estabelece conexão com o banco*/
-        this.conn = ConnectionPubMed.getConnection(usuario);
+            this.conn = ConnectionPubMed.getConnection(usuario);
+        } catch (SQLException e){
+            throw new SQLException("", "", e.getErrorCode());
+        }
     }
 
     /*Retorna 1 se o usuário for um Admin e 0 caso contrário*/
     public int verificarTipoUsuario() throws SQLException, PubMedDAOException {
 
         try {
-        String SQL = "EXEC verificaTipoUsuario";
-        int res;
+            int res;
+            
+            CallableStatement cstmt = conn.prepareCall("{call dbo.verificaTipoUsuario(?)}");
+            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cstmt.execute();
+            res = cstmt.getInt(1);
+            ConnectionPubMed.close(conn, null, null);
 
-        System.out.println("Aqui5");
-        PreparedStatement ps = conn.prepareStatement(SQL);
-        ResultSet rs = ps.executeQuery();
-
-        rs.next();
-        res = rs.getInt(1);
-        
-        System.out.println("Res: ");
-
-        ConnectionPubMed.close(conn, ps, rs);
-        System.out.println("Aqui6");
-
-        return res;
-        } catch(SQLException e){
-            System.out.println("erro: " + e.getMessage());
+            return res;
+        } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
     }
@@ -53,18 +49,46 @@ public class VerificaUsuarioDAO {
     /*Retorna 1 caso o usuário passado seja o atual usuário logado no banco e 1 caso contrário*/
     public int verificaDono(String dono) throws SQLException, PubMedDAOException {
 
-        String SQL = "EXEC verificarDono";
-        int res;
-        ResultSet rs;
+        try {
+            int res;
+            
+            /*Prepara pra executar a procedure*/
+            CallableStatement cstmt = conn.prepareCall("{call dbo.verificarDono(?, ?)}");
+            
+            cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+            cstmt.setString(1, dono);
+            cstmt.execute();
+            res = cstmt.getInt(2);
+            
+            /*Fecha a conexão*/
+            ConnectionPubMed.close(conn, null, null);
 
-        PreparedStatement ps = conn.prepareCall(SQL);
-        rs = ps.executeQuery();
+            return res;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+    
+    /*Verifica se o login passado como parâmetro existe*/
+    public int verificarLogin(String login) throws PubMedDAOException, SQLException{
+        
+        try {
+            int res;
+            
+            /*Prepara pra executar a procedure*/
+            CallableStatement cstmt = conn.prepareCall("{call dbo.verificarLogin(?, ?)}");
+            
+            cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+            cstmt.setString(1, login);
+            cstmt.execute();
+            res = cstmt.getInt(2);
+            
+            /*Fecha a conexão*/
+            ConnectionPubMed.close(conn, null, null);
 
-        rs.next();
-        res = rs.getInt(1);
-
-        ConnectionPubMed.close(conn, ps, rs);
-
-        return res;
+            return res;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
     }
 }

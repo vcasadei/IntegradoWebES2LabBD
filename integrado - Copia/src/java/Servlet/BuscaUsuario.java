@@ -4,9 +4,9 @@
  */
 package Servlet;
 
-import Bean.Usuario;
 import Banco.PubMedDAOException;
 import Banco.VerificaUsuarioDAO;
+import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Caah
  */
-public class FazerLogin extends HttpServlet {
+public class BuscaUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -43,10 +43,10 @@ public class FazerLogin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FazerLogin</title>");
+            out.println("<title>Servlet BuscaUsuario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FazerLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BuscaUsuario at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -67,7 +67,43 @@ public class FazerLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        try {
+            
+            String loginAtual = "";
+            String senhaAtual = "";
+            String dados;
+                    
+            /*Pegar os valores da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                loginAtual = (String)session.getAttribute("username");
+                senhaAtual = (String)session.getAttribute("password");
+            }
+            
+            String login = request.getParameter("login");
+            Usuario user = new Usuario(loginAtual, senhaAtual);
+            VerificaUsuarioDAO verUser = new VerificaUsuarioDAO(user);
+            
+            if (verUser.verificarLogin(loginAtual) == 1){
+                dados = "<option value=\"administrador\">Administrador</option>"
+                    + "<option value=\"pesquisador\">Pesquisador</option>";
+            } else {
+                dados = "1";
+            }
+
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(dados);
+            writer.close();
+
+        } catch (PubMedDAOException e) {
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        } catch (SQLException e) {
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }
     }
 
     /**
@@ -82,44 +118,7 @@ public class FazerLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
-            String login, senha;
-            login = request.getParameter("login");
-            senha = request.getParameter("senha");
-
-            /*Tenta conetar no banco*/
-            Usuario user = new Usuario(login, senha);
-            VerificaUsuarioDAO conexao = new VerificaUsuarioDAO(user);
-
-            /*Verificar se é admin ou comum e atribuir a variável tipo*/
-            int tipo = conexao.verificarTipoUsuario();
-            /*Conexão com o banco é fechada nesse método*/
-
-            /*Cria a conexão e seta os atributos de login e senha*/
-            HttpSession session = request.getSession();
-            session.setAttribute("username", login);
-            session.setAttribute("password", senha);
-            session.setAttribute( "tipo", tipo);
-            
-            /*Manda pra aplicação que o login foi realizado com sucesso*/
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter writer = response.getWriter();
-            writer.print("1");
-            writer.close();
-
-        } catch (PubMedDAOException ex) {
-            Logger.getLogger(FazerLogin.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
-        } catch (SQLException e) {
-            if (e.getErrorCode() == 18456 || e.getErrorCode() == 4060) {
-                /*Manda pra aplicação o usuário ou senha são inválidas*/
-                response.setContentType("text/html;charset=UTF-8");
-                PrintWriter writer = response.getWriter();
-                writer.print("0");
-                writer.close();
-            }
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -20,8 +20,8 @@ public class ConnectionPubMed {
     public static Connection getConnection(Usuario user) throws PubMedDAOException, SQLException {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://localhost;databaseName=Projeto"/*;integratedSecurity=true"*/;
-            Connection conn = DriverManager.getConnection(conexao, user.getLogin(), user.getSenha());
+            String conexao = "jdbc:sqlserver://localhost;databaseName=Projeto;integratedSecurity=true";
+            Connection conn = DriverManager.getConnection(conexao/*, user.getLogin(), user.getSenha()*/);
             return conn;
         } catch (SQLException e){
             throw new SQLException("", "", e.getErrorCode());

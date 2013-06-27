@@ -36,8 +36,7 @@
                 </nav>
             </header>
         </div>
-
-       <div class="login">
+        <div class="login">
             <%
                 session = request.getSession(false);
                 if (session.getAttribute("username") != null) {
@@ -97,7 +96,7 @@
                             <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value=""/>
                         </p>
                         <label class="label-s label-right" id="erro" style="color: red">
-
+                             
                         </label>
                         <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>

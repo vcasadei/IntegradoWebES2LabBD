@@ -54,7 +54,6 @@
                         </p>
                         
                         
-                        <div id="msg"></div>
                         <div class="btn-cadastrar-box">
                             <input type="text" id="btn-logar" class="btn-logar" value="Login">
                         </div>

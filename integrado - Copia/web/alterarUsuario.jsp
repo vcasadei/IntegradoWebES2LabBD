@@ -35,7 +35,6 @@
                 </nav>
             </header>
         </div>
-
         <div class="login">
             <%
                 session = request.getSession(false);
@@ -45,42 +44,38 @@
             <%                }
             %>
         </div>
-
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar Usu√°rio</a></div>
-                    <h2>Cadastrar Usu·rio</h2>
+                    <div class="separator separator3"><a href="index.jsp">Inicio</a> -> <a>Cadastrar</a> -> <a href="alterarUsuario.html">Alterar Usu·rio</a></div>
+                    <h2>Alterar Tipo Usus·rio</h2>
                     <form class="cadastra-usuario-form">
-                        <div class="separator separator2">Todos os campos s√£o obrigat√≥rios</div>
 
                         <p class="side-fields">
 
                             <label for="username-edt">Login:</label>
-                            <input type="text" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-
-                            <label for="user-type-edt">Tipo de Usu√°rio:</label>
-                            <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
-                                <option value="administrador">Administrador</option>
-                                <option value="pesquisador">Pesquisador</option>
-                            </select>
-                            <br>
-
-                        </p>
+                            <input type="text" id="username-edt" class="username-edt noEnterSubmit" autocomplete="off" placeholder=""/>
+                            <input type="text" class="noClickSubmit pesquisar-login"/>
                         <div id="msg"></div>
+
+                        <label for="user-type-edt">Tipo de Usu·rio:</label>
+                        <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit" disabled>
+                            <option value="administrador">Administrador</option>
+                            <option value="pesquisador">Pesquisador</option>
+                        </select>
+                        <br>
                         <div class="btn-cadastrar-box">
-                            <input type="button" class="btn-cadastrar-admin" value="Cadastrar">
+                            <input type="button" class="btn-alterarTipo" value="Alterar">
                         </div>
                     </form>
-
                 </div>
             </div> 
         </div> 
 
-        <!-- Rodap√© -->
+        <!-- RodapÈ -->
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>¬© 2013 forArticle - Forward your research!</h3>
+                <h3>© 2013 forArticle - Forward your research!</h3>
             </footer>
         </div>
 
@@ -88,5 +83,6 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
 
         <script src="./js/pesquisa-home.js"></script>
+         <script src="./js/alterarUsuario.js"></script>
     </body>
 </html>

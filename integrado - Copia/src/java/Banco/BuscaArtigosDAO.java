@@ -64,11 +64,13 @@ public class BuscaArtigosDAO {
         ConnectionPubMed.close(conn, ps, rs);
         return listaTitulos;
     }
-    
-    /**Busca a quantidade de artigos da busca simple*/
-    public int buscaQuantidadeDeArtigos(String titulo) throws SQLException, PubMedDAOException{
+
+    /**
+     * Busca a quantidade de artigos da busca simple
+     */
+    public int buscaQuantidadeDeArtigos(String titulo) throws SQLException, PubMedDAOException {
         PreparedStatement ps;
-        
+
         String SQL = "SELECT COUNT(articleID) FROM Article WHERE title like '%" + titulo + "%'";
         ps = conn.prepareStatement(SQL);
 
@@ -78,11 +80,11 @@ public class BuscaArtigosDAO {
         ConnectionPubMed.close(conn, ps, rs);
         return Integer.parseInt(retorno);
     }
-    
+
     /*Busca quantidade de artigos da busca avançada*/
-     public int buscaQuantidadeDeArtigosAvancada(String titulo, String issn, String dataIni, String dataFim) throws SQLException, PubMedDAOException{
+    public int buscaQuantidadeDeArtigosAvancada(String titulo, String issn, String dataIni, String dataFim) throws SQLException, PubMedDAOException {
         PreparedStatement ps;
-        
+
         String SQL = "SELECT COUNT(articleID) FROM Article WHERE title like '%" + titulo + "%'";
         ps = conn.prepareStatement(SQL);
 
@@ -92,7 +94,7 @@ public class BuscaArtigosDAO {
         ConnectionPubMed.close(conn, ps, rs);
         return Integer.parseInt(retorno);
     }
-    
+
     /*Busca os dados do artigo de acordo com uma keyword*/
     public List<Article> buscaArtigoKeyWord(String keyword) throws SQLException, PubMedDAOException {
 
@@ -120,30 +122,14 @@ public class BuscaArtigosDAO {
             throws SQLException, PubMedDAOException {
 
         List<Article> listaTitulos = new ArrayList<Article>();
-        Statement ps;
 
-        String SQL = "exec buscaAvancada @tit = " + titulo + " @issn = " + issn + " @dataInic = " + dataInicial
-                + " @dataFinal = " + dataFinal;
-        
-        /*SQL = "DECLARE @rowsPerPage INT;\n";
-        SQL += "DECLARE @pageNum INT;\n";
-        SQL += "SET @rowsPerPage = 10;\n";
-        SQL += "SET @pageNum = " + n_pagina + "; \n";
-        SQL += "WITH SQLPaging\n";
-        SQL += "AS\n";
-        SQL += "(\n";
-        SQL += "SELECT TOP(@rowsPerPage * @pageNum)\n";
-        SQL += "ResultNum = ROW_NUMBER() OVER (ORDER BY title)\n";
-        SQL += ",title, resumo, articleID\n";
-        SQL += "FROM Article WHERE title like '%" + titulo + "%'\n";
-        SQL += ")\n";
-        SQL += "SELECT *\n";
-        SQL += "FROM SQLPaging\n";
-        SQL += "WHERE ResultNum > ((@pageNum - 1) * @rowsPerPage)";*/
+        PreparedStatement ps = conn.prepareStatement("EXEC buscaAvancada ?,?,?,?");
+        ps.setString(1, titulo);
+        ps.setString(2, issn);
+        ps.setString(3, dataInicial);
+        ps.setString(4, dataFinal);
 
-        ps = conn.createStatement();
-
-        ResultSet rs = ps.executeQuery(SQL);
+        ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             Article art = new Article(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
@@ -251,8 +237,8 @@ public class BuscaArtigosDAO {
         ConnectionPubMed.close(conn, ps, rs);
         return titulos;
     }
-    
-     public List<String> autocompleteKeyword(String keyword) throws SQLException, PubMedDAOException {
+
+    public List<String> autocompleteKeyword(String keyword) throws SQLException, PubMedDAOException {
 
         List<String> titulos = new ArrayList<String>();
         PreparedStatement ps;

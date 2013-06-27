@@ -36,7 +36,6 @@
                 </nav>
             </header>
         </div>
-        
         <div class="login">
             <%
                 session = request.getSession(false);
@@ -47,7 +46,6 @@
                 }                    
             %>
         </div>
-
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-box">
