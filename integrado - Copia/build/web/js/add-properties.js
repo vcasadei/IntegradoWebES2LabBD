@@ -355,15 +355,17 @@ function adicionaAutor(){
             $('.control-authors').html('Por Favor, preencha todos os campos');
             $('.ccontrol-authors').removeClass('ok').addClass( 'error', 300 );
             return;
-    };
-
-    if (FName.length > 0 || SName.length > 0 || IName.length > 0) {
+    } else {
+        if (FName.length > 0 || SName.length > 0 || IName.length > 0) {
             autorFName.css('box-shadow', '0px 0px 0px 0px #999999');
             autorLName.css('box-shadow', '0px 0px 0px 0px #999999');
             autorIName.css('box-shadow', '0px 0px 0px 0px #999999');
             $('.control-authors').html('');
             $('.control-authors').removeClass('error').addClass( 'ok', 300 );
-    };
+        };
+    }
+
+    
     
     if (FName.match(/[0-9]/) !== null || SName.match(/[0-9]/) !== null || IName.match(/[0-9]/) !== null) {
             autorFName.css('box-shadow', '0px 0px 1px 1px #FF3300');

@@ -45,15 +45,18 @@ $t(document).ready(
             {
                 console.log("ahoy3");
                 $t('btn-pesquisar').blur();
+                $t('.control-pesquisa-home').removeClass('error').addClass( 'ok', 300 );
                 $t('#pesquisa-a').submit();
                 $t('btn-pesquisar').blur();
+                
                
             } else {
                 $t("#journalTitle").css('box-shadow', '0px 0px 1px 1px #FF3300');
                 $t("#issn").css('box-shadow', '0px 0px 1px 1px #FF3300');
                 $t("#data-ini").css('box-shadow', '0px 0px 1px 1px #FF3300');
                 $t("#data-fim").css('box-shadow', '0px 0px 1px 1px #FF3300');
-                console.log("aaaaa");
+                $t('.control-pesquisa-home').html('Informe ao menos um dos campos para a pesquisa');
+                $t('.control-pesquisa-home').removeClass('ok').addClass( 'error', 300 );
                 $t('btn-pesquisar').blur();
             }
          });
@@ -189,40 +192,16 @@ var validate =
                     
                     isValid =  false;
                      
-                        $tinput.attr("placeholder", "Insira o ISSN");
                         
                       
                     } else {
                         $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
                                 
                              $tinput.boxShadow( 0, 0, 1, "#999999" );
-                           
-
-                        isValid =  true;
-                      
-                    
-                        if( $tinput.val() > 9){
-                           
-                            isValid =  false;
-                              
-                                $tinput.attr("placeholder", "No Máx 9 caracteres");
-                                
-                              
-                            } else {
-                                
-                                        $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
-                                      
-                                          $tinput.boxShadow( 0, 0, 1, "#999999" );
-                                        
-                                            isValid = true;
-
-                                             
-
-                                            return isValid;
-                                    
-                                
-                         }                   
+                             isValid =  true;      
+                                            
                 }
+                return isValid;
             },
                     
            dataini: 

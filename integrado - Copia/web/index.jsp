@@ -77,6 +77,7 @@
                    <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
                        <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
+                            <div class="control-pesquisa-home ok"></div>
                             <label for="journal-title-edt">Titulo </label>
                             <input type="text" autocomplete="off" data-provide="typeahead" name="journal-title-edt" id="journalTitle" class="journal-title-edt noEnterSubmit" placeholder=""/>
                             
@@ -110,9 +111,11 @@
         <script charset="utf-8" src="./js/jquery-1.9.1.min.js"></script>
         <script charset="utf-8" src="./js/pesquisa-home.js"></script>
         <script charset="utf-8">window.jQuery || document.write('<script charset="utf-8" src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
+        <script charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script charset="utf-8" src="js/bootstrap.js"></script>
         <script charset="utf-8" src="js/autocomplete.js"></script>
+        <script charset="utf-8" src="js/maskinput.js"></script>
+        <script charset="utf-8" src="js/mask-validations.js"></script>
         
     </body>
 </html>

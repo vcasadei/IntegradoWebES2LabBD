@@ -154,7 +154,7 @@
                                     <input class="" data-provide="typeahead" type="text" size="13" name="autor-busca" id="lastname"/>    
                                 </td>
                                 <td>
-                                    <input class="" data-provide="typeahead" type="text" size="7" name="autor-busca" id="initialsname"/>
+                                    <input class="" data-provide="typeahead" type="text" maxlength="6" size="7" name="autor-busca" id="initialsname"/>
                                 </td>
                                 <td>
                                     <input type="text" class="noClickSubmit" id="adicionar-autor"/>

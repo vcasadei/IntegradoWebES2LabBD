@@ -100,6 +100,91 @@ $(document).ready(
                 $('.control-journal-title').removeClass('error').addClass( 'ok', 300 );
             }
         });
+        
+        $('#forename').keyup(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#forename').keypress(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#lastname').keyup(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#lastname').keypress(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#initialsname').keyup(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#initialsname').keypress(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#keyword').keyup(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#keyword').keypress(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#mesh').keyup(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#mesh').keypress(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#chemical').keyup(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#chemical').keypress(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#pubtype').keyup(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
+        });
+        
+        $('#pubtype').keypress(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
+        });
+
     
       $("#title-article").change( validate.controls.title);
       $("#id-article").change( validate.controls.id);
@@ -235,29 +320,22 @@ var validate =
                     
     
                     } else {
-                            if( aux.match(/^\d+$/) === null){
-                                isValid =  false;
-                                $('.control-id-article').html('O ID do Artigo deve conter somente números');
-                                $('.control-id-article').removeClass('ok').addClass( 'error', 300 );
-                                $input.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                                isValid = false;
-                             } else {
-                                 if(aux.length > 30){
-                                     isValid =  false;
-                                    $('.control-id-article').html('O ID do Artigo deve conter menos de 30 caracteres');
-                                    $('.control-id-article').removeClass('ok').addClass( 'error', 300 );
-                                    $input.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
-                                    isValid = false;
-                                 } else {
-                                     $input.css('box-shadow', '0px 0px 0px 0px #999999');
-                                    $('.control-id-article').removeClass('error').addClass( 'ok', 300 );
-                                    isValid =  true;
+                        if(aux.length > 50){
+                            isValid =  false;
+                           $('.control-id-article').html('O ID do Artigo deve conter menos de 50 caracteres');
+                           $('.control-id-article').removeClass('ok').addClass( 'error', 300 );
+                           $input.css('box-shadow', '0px 0px 1px 1px #FF3300'); 
+                           isValid = false;
+                        } else {
+                            $input.css('box-shadow', '0px 0px 0px 0px #999999');
+                           $('.control-id-article').removeClass('error').addClass( 'ok', 300 );
+                           isValid =  true;
 
-                                    return isValid;
-                                 }
-                                     
-                             }
+                           return isValid;
                         }
+
+                    }
+                        
                         return isValid;
                          
                 
@@ -291,6 +369,54 @@ var validate =
 
                         }
             },
+            
+             issn: 
+           function(){
+               var $input = $('#issn');
+               var isValid = true;
+               
+               var nlm = $('#nlmuniqueid');
+               var journalTitle = $('#journalTitle');
+               var abreviation = $('#abreviation');
+               var pagination = $('#pagination');
+               var volume = $('#volume');
+               var issue = $('#issue');
+
+                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
+                function rtrim(texto) { return  texto.replace(/[ ]+$/, ''); }
+                function trim(texto) { return ltrim(rtrim(texto)); }
+
+                var aux = trim($input.val());
+                var nlmvar = trim(nlm.val());
+                var journalTitlevar = trim(journalTitle.val());
+                var abreviationvar = trim(abreviation.val());
+                var paginationvar = trim(pagination.val());
+                var volumevar = trim(volume.val());
+                var issuevar = trim(issue.val());
+                
+                    if(aux.length > 1 && aux.length < 9){
+                    
+                        isValid =  false;
+                        $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                        $('.control-issn-journal').html('ISSN deve conter 9 caracteres');
+                        $('.control-issn-journal').removeClass('ok').addClass( 'error', 300 );
+                    
+    
+                    } else {
+                            $input.css('box-shadow', '0px 0px 0px 0px #999999');
+                            $('.control-issn-journal').removeClass('error').addClass( 'ok', 300 );
+                            isValid =  true;
+
+                            return isValid;  
+                        }
+                        
+                    return isValid;  
+                
+                               
+
+                    
+            },
+            
             nlm: 
            function(){
                var $input = $('#nlmuniqueid');
@@ -325,15 +451,15 @@ var validate =
                     $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
                     $('.control-nlm').html('Insira o NLM no artigo');
                     $('.control-nlm').removeClass('ok').addClass( 'error', 300 );
-                    
-    
                     } else {
                         if(aux.length > 9){
                             $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
                             $('.control-nlm').html('NLM deve conter no máximo 9 caracteres');
                             $('.control-nlm').removeClass('ok').addClass( 'error', 300 );
+  
                         } else {
                             $input.css('box-shadow', '0px 0px 0px 0px #999999');
+                            
                             $('.control-nlm').removeClass('error').addClass( 'ok', 300 );
                             isValid =  true;
 
@@ -352,52 +478,7 @@ var validate =
                 
                 
             },
-             issn: 
-           function(){
-               var $input = $('#issn');
-               var isValid = true;
-               
-               var nlm = $('#nlmuniqueid');
-               var journalTitle = $('#journalTitle');
-               var abreviation = $('#abreviation');
-               var pagination = $('#pagination');
-               var volume = $('#volume');
-               var issue = $('#issue');
-
-                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
-                function rtrim(texto) { return  texto.replace(/[ ]+$/, ''); }
-                function trim(texto) { return ltrim(rtrim(texto)); }
-
-                var aux = trim($input.val());
-                var nlmvar = trim(nlm.val());
-                var journalTitlevar = trim(journalTitle.val());
-                var abreviationvar = trim(abreviation.val());
-                var paginationvar = trim(pagination.val());
-                var volumevar = trim(volume.val());
-                var issuevar = trim(issue.val());
-                
-                    if(aux.length > 9){
                     
-                        isValid =  false;
-                        $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
-                        $('.control-issn-journal').html('ISSN deve conter no máximo 9 caracteres');
-                        $('.control-issn-journal').removeClass('ok').addClass( 'error', 300 );
-                    
-    
-                    } else {
-                            $input.css('box-shadow', '0px 0px 0px 0px #999999');
-                            $('.control-issn-journal').removeClass('error').addClass( 'ok', 300 );
-                            isValid =  true;
-
-                            return isValid;  
-                        }
-                        
-                    return isValid;  
-                
-                               
-
-                    
-            },
             journalTitle: 
            function(){
                var $input = $('#journalTitle');
