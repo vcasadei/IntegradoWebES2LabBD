@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="css/cadastro_artigo.css">
         <link rel="stylesheet" href="css/autocomplete.css">
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script charset="utf-8" src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -67,13 +67,15 @@
                                 int cont, tam;
 
                         %>
+                        <div class="control-titulo ok"></div>
                         <p class="line-field">
-                            <label class="label-s" for="titulo">Título: </label>
-                            <input class="text-s" type="text" name="titulo" value="<%= objArticleBean.getTitle()%>"/>
+                            <label id="title-label" class="label-s" for="titulo">Título: </label>
+                            <input id="title-article" class="text-s" type="text" name="titulo" value="<%= objArticleBean.getTitle()%>"/>
                         </p>
                         <p class="side-fields">
-                            <label class="label-s" for="articleId">ID do Artigo: </label>
-                            <input class="text-inline" type="text" name="articleId" disabled value="<%= objArticleBean.getArticleID()%>"/>
+                            <div class="control-id-article ok"></div>
+                            <label id="id-article-label" class="label-s" for="articleId">ID do Artigo: </label>
+                            <input id="id-article" class="text-inline" type="text" name="articleId" disabled value="<%= objArticleBean.getArticleID()%>"/>
                             <label class="label-s label-right" for="data">Data de Publicação: </label>
 
                             <input class="date-field text-right" type="text" name="data" value="<%= objArticleBean.getArticleDate()%>"/>
@@ -109,30 +111,60 @@
                             <input class="text-inline text-right" type="text" name="affiliation" value="<%= objArticleBean.getAffiliation()%>"/>
                         </p>
                         <p class="resumo-field">
-                            <label class="label-s" for="resumo">Resumo: </label>
-                            <textarea class="resumo" rows="6" cols="90" name="resumo"><%= objArticleBean.getResumo()%></textarea>
+                            <div class="control-abstract ok"></div>
+                            <label id="resumo-label" class="label-s" for="resumo">Resumo: </label>
+                            <textarea id="abstract-article" class="resumo" rows="6" cols="90" name="resumo"><%= objArticleBean.getResumo()%></textarea>
                         </p>
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
-                            <label class="label-s" for="nlmuniqueid">NLM (ID único): </label>
-                            <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" disabled <%= objArticleBean.getJournal().getNlmUniqueID()%>/>
-                            <label class="label-s label-right" for="issn">ISSN: </label>
-                            <input class="text-right issn-edt" type="text" name="issn" value="<%= objArticleBean.getJournal().getISSN()%>" disabled />
+                            <div class="control-journal-general ok"></div>
+                            <table class="id-nlm">
+                                <tr>
+                                    <td>
+                                        <div class="control-nlm ok"></div>
+                                        <label id="nlm-id-label" class="label-s" for="nlmuniqueid">NLM (ID único): </label>
+                                        <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" id="nlmuniqueid" <%= objArticleBean.getJournal().getNlmUniqueID()%>/>
+                                        <input type="text" id="pesquisar-nlm" class="noClickSubmit pesquisar-nlm"/>
+                                    </td>
+                                    <td>
+                                        <div class="control-issn-journal ok"></div>
+                                        <label id="issn-label" class="label-s label-right" for="issn">ISSN: </label>
+                                        <input class="text-right issn-edt" type="text" id="issn" name="issn" value="<%= objArticleBean.getJournal().getISSN()%>" />
+                                        <input id="pesquisar-issn" type="text" class="noClickSubmit pesquisar-issn"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            
                         </p>
                         <p class="line-field">
-                            <label class="label-s" for="journalTitle">Título da Revista: </label>
-                            <input class="text-s journal" type="text" name="journalTitle" value="<%= objArticleBean.getJournal().getTitle()%>" disabled/>
+                            <div class="control-journal-title ok"></div>
+                            <label id="journal-title-label" class="label-s" for="journalTitle">Título da Revista: </label>
+                            <input class="text-s journal" type="text" name="journalTitle" id="journalTitle" value="<%= objArticleBean.getJournal().getTitle()%>"/>
+                            <input id="pesquisar-title" type="text" class="noClickSubmit pesquisar-title"/>
                         </p>
                         <p class="side-fields">
+                            <label class="label-s" for="abreviation">Abreviação: </label>
+                            <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value="<%= objArticleBean.getAbreviation()%>"/>
+                        </p>
+                        <label class="label-s label-right" id="erro" style="color: red">
+                             
+                        </label>
+                        <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>
-                            <input class="text-inline" type="text" name="pagination" size="10" value="<%= objArticleBean.getPagination()%>" disabled/>
+                            <input class="text-inline" type="text" id="pagination" name="pagination" size="10" value="<%= objArticleBean.getPagination()%>"/>
                             <label class="label-s label-right" for="volume">Volume: </label>
-                            <input class="text-inline" type="text" name="volume" size="10" disabled value="<%= objArticleBean.getVolume()%>"/>
+                            <input class="text-inline" type="text" id="volume" name="volume" size="10" value="<%= objArticleBean.getVolume()%>"/>
                             <label class="label-s label-right" for="issue">Issue: </label>
-                            <input class="text-inline" type="text" name="issue" size="10" disabled value="<%= objArticleBean.getIssue()%>"/>
+                            <input class="text-inline" type="text" id="issue" name="issue" size="10" value="<%= objArticleBean.getIssue()%>"/>
                         </p>
                         <div class="separator separator2">Autores</div>
                         <p class="line-field no-bottom-margin">
+                            
+                        <div class="control-author-name ok"></div>
+                        <div class="control-author-lastname ok"></div>
+                        <div class="control-author-initials ok"></div>
+                        
                         <table class="autor-table">
                             <tr class="tr-labels">
                                 <td></td>
@@ -159,6 +191,7 @@
                                 </td>
                             </tr>
                         </table>
+                        <div class="control-authors ok"></div>
                         <div class="autor-box">
                             <p class="no-bottom-margin autores-selecionados">
                                 <strong>*Autores Selecionados:</strong>
@@ -179,7 +212,7 @@
                                     while (cont < tam) {
 
                                 %>
-                                <!--Coloca o código dos autores aqui-->
+                                <li class="author-item"></li>
                                 <%
                                         cont++;
                                     }
@@ -338,6 +371,7 @@
                             }
                         %>
 
+                        <div class="control-cadastro ok"></div>
                         <div class="btn-cadastrar-box">
                             <input type="submit" class="btn-cadastrar" value="Cadastrar">
                         </div>
@@ -360,14 +394,18 @@
             </footer>
         </div>
 
-        <script src="./js/jquery-1.9.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script charset="utf-8" src="./js/jquery-1.9.1.min.js"></script>
+        <script charset="utf-8">window.jQuery || document.write('<script charset="utf-8" src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         
-        <script src="js/main.js"></script>
-        <script src="js/add-properties.js"></script>
-        <script src="js/search-author.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/autocomplete.js"></script>
+        <script charset="utf-8" src="js/main.js"></script>
+        <script charset="utf-8" src="js/add-properties.js"></script>
+        <script charset="utf-8" src="js/search-author.js"></script>
+        <script charset="utf-8" src="js/bootstrap.min.js"></script>
+        <script charset="utf-8" src="js/autocomplete.js"></script>
+        <script charset="utf-8" src="js/buscarJournal.js"></script>
+        
+        <script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
+        <script charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </body>
 </html>
 

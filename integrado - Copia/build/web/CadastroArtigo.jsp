@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="css/cadastro_artigo.css">
         <link rel="stylesheet" href="css/autocomplete.css">
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script charset="utf-8" src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -88,13 +88,13 @@
                                     <div class="control-nlm ok"></div>
                                     <label id="nlm-id-label" class="label-s" for="nlmuniqueid">NLM (ID Único): </label>
                                     <input class="text-inline nlm-edt" data-provide="typeahead" type="text" name="nlmuniqueid" id="nlmuniqueid" placeholder="Busque pelo ID"  value=""/>                           
-                                    <input type="text" class="noClickSubmit pesquisar-nlm"/>
+                                    <input type="text" id="pesquisar-nlm" class="noClickSubmit pesquisar-nlm"/>
                                 </td>
                                 <td>
                                     <div class="control-issn-journal ok"></div>
                                     <label id="issn-label" class="label-s label-right" for="issn">ISSN: </label>
                                     <input class="text-right issn-edt" data-provide="typeahead" type="text" name="issn" id="issn" placeholder="Busque pelo ISSN"  value=""/>
-                                    <input type="text" class="noClickSubmit pesquisar-issn"/>
+                                    <input id="pesquisar-issn" type="text" class="noClickSubmit pesquisar-issn"/>
                                 </td>
                             </tr>
                         </table>
@@ -105,7 +105,7 @@
                             <div class="control-journal-title ok"></div>
                             <label id="journal-title-label" class="label-s" for="journalTitle">Título da Revista: </label>
                             <input class="text-s journal" data-provide="typeahead" type="text" name="journalTitle" id="journalTitle" placeholder="Busque pelo título" value=""/>
-                            <input type="text" class="noClickSubmit pesquisar-title"/>
+                            <input id="pesquisar-title" type="text" class="noClickSubmit pesquisar-title"/>
                         </p>
                         <p class="side-fields">
                             <label class="label-s" for="abreviation">Abreviação: </label>
@@ -256,17 +256,17 @@
         </div>
 
 
-        <script src="./js/jquery-1.9.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script charset="utf-8" src="./js/jquery-1.9.1.min.js"></script>
+        <script charset="utf-8">window.jQuery || document.write('<script charset="utf-8" src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script src="js/main.js"></script>
+        <script charset="utf-8" src="js/main.js"></script>
         <script charset="utf-8" src="js/add-properties.js"></script>
         
-<!--        <script src="js/search-author.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/autocomplete.js"></script>
-        <script src="js/buscarJournal.js"></script>-->
-<script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script charset="utf-8" src="js/search-author.js"></script>
+        <script charset="utf-8" src="js/bootstrap.min.js"></script>
+        <script charset="utf-8" src="js/autocomplete.js"></script>
+        <script charset="utf-8" src="js/buscarJournal.js"></script>
+        <script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
+        <script charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </body>
 </html>

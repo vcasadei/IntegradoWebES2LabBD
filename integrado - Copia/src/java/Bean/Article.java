@@ -49,6 +49,10 @@ public class Article {
     public String getPagination() {
         return pagination;
     }
+    
+    public String getAbreviation() {
+        return pagination;
+    }
 
     public void setPagination(String pagination) {
         this.pagination = pagination;
