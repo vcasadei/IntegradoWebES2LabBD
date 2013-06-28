@@ -68,7 +68,7 @@
                         <p class="side-fields">
                             <label class="label-s" for="articleId">*Status da Publicação: </label>
                             <select class="status-combobox" name="publication">
-                                <option value="apublish">ppublish</option>
+                                <option value="ppublish">ppublish</option>
                                 <option value="epublish">epublish</option>
                                 <option value="aheadofprint">aheadofprint</option>
                             </select>

@@ -78,6 +78,90 @@ $(document).ready(
             }
         });
         
+        $('#forename').keyup(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#forename').keypress(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#lastname').keyup(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#lastname').keypress(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#initialsname').keyup(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#initialsname').keypress(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#keyword').keyup(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#keyword').keypress(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#mesh').keyup(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#mesh').keypress(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#chemical').keyup(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#chemical').keypress(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#pubtype').keyup(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
+        });
+        
+        $('#pubtype').keypress(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
+        });
+        
     
       $("#nlmuniqueid").change( validate.controls.nlm);
       $("#issn").change( validate.controls.issn);
@@ -185,7 +269,6 @@ var validate =
                 var volumevar = trim(volume.val());
                 var issuevar = trim(issue.val());
                 
-                if($input.is(':disabled') == false ){
                     if(issnvar !== "" || journalTitlevar !== "" || abreviationvar !== "" || paginationvar !== "" || volumevar !== "" || issuevar !== ""){
                     
                         if(aux === "" || aux === null){
@@ -220,7 +303,7 @@ var validate =
                         return isValid; 
                     }
                     
-                }
+                
                 
                 return isValid; 
                 
@@ -250,13 +333,11 @@ var validate =
                 var volumevar = trim(volume.val());
                 var issuevar = trim(issue.val());
                 
-                //Se anteriormente o journal era null
-                if(nlm.is(':disabled') == false){
-                    if(aux.length > 9){
+                    if(aux.length > 1 && aux.length < 9){
                     
                         isValid =  false;
                         $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
-                        $('.control-issn-journal').html('ISSN deve conter no máximo 9 caracteres');
+                        $('.control-issn-journal').html('ISSN deve conter 9 caracteres');
                         $('.control-issn-journal').removeClass('ok').addClass( 'error', 300 );
                     
     
@@ -267,7 +348,7 @@ var validate =
 
                             return isValid;  
                         }
-                }
+                
                     
                         
                     return isValid;  
@@ -300,7 +381,6 @@ var validate =
                 var volumevar = trim(volume.val());
                 var issuevar = trim(issue.val());
                 
-                if(nlm.is(':disabled') == false){
                     if(nlmvar !== "" || issnvar !== "" || abreviationvar !== "" || paginationvar !== "" || volumevar !== "" || issuevar !== ""){
                         if(aux === "" || aux === null){
 
@@ -325,7 +405,7 @@ var validate =
 
                         return isValid;  
                     }
-                }
+                
                 
                 return isValid;  
             

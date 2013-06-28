@@ -75,7 +75,7 @@
                         <p class="side-fields">
                             <div class="control-id-article ok"></div>
                             <label id="id-article-label" class="label-s" for="articleId">ID do Artigo: </label>
-                            <input id="id-article" class="text-inline" type="text" name="articleId" disabled value="<%= objArticleBean.getArticleID()%>"/>
+                            <input id="id-article" class="text-inline" type="text" name="articleId" readonly value="<%= objArticleBean.getArticleID()%>"/>
                             <label class="label-s label-right" for="data">Data de Publicação: </label>
 
                             <input class="date-field text-right" type="text" name="data" value="<%= objArticleBean.getArticleDate()%>"/>
@@ -88,18 +88,18 @@
                                     if (aux == "ppublish") {
 
                                 %>
-                                <option value="apublish" selected>ppublish</option>
+                                <option value="ppublish" selected>ppublish</option>
                                 <option value="epublish">epublish</option>
                                 <option value="aheadofprint">aheadofprint</option>
                                 <%                                        } else {
                                     if (aux == "epublish") {
                                 %>
-                                <option value="apublish">ppublish</option>
+                                <option value="ppublish">ppublish</option>
                                 <option value="epublish" selected>epublish</option>
                                 <option value="aheadofprint">aheadofprint</option>
                                 <%                                                } else {
                                 %>
-                                <option value="apublish">ppublish</option>
+                                <option value="ppublish">ppublish</option>
                                 <option value="epublish">epublish</option>
                                 <option value="aheadofprint" selected>aheadofprint</option>
                                 <%                                                        }

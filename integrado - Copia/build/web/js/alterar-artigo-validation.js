@@ -4,15 +4,12 @@ var $ = jQuery.noConflict();
 $(document).ready(
    function()
    {
-       $('#id-article').attr('disabled', 'disabled');
+       $('#id-article').attr('readonly', 'readonly');
        if($('#nlmuniqueid').val() !== ""){
-           $('#nlmuniqueid').attr('disabled', 'disabled');
-           $('#issn').attr('disabled', 'disabled');
-           $('#journalTitle').attr('disabled', 'disabled');
-           $('#abreviation').attr('disabled', 'disabled');
-           $('#pagination').attr('disabled', 'disabled');
-           $('#volume').attr('disabled', 'disabled');
-           $('#issue').attr('disabled', 'disabled');
+           $('#nlmuniqueid').attr('readonly', 'readonly');
+           $('#issn').attr('readonly', 'readonly');
+           $('#journalTitle').attr('readonly', 'readonly');
+           $('#abreviation').attr('readonly', 'readonly');
            $('#pesquisar-nlm').css('cursor', 'default');
            $('#pesquisar-issn').css('cursor', 'default');
            $('#pesquisar-title').css('cursor', 'default');
@@ -116,6 +113,90 @@ $(document).ready(
                 $('#journalTitle').css('box-shadow', '0px 0px 0px 0px #999999'); 
                 $('.control-journal-title').removeClass('error').addClass( 'ok', 300 );
             }
+        });
+        
+        $('#forename').keyup(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#forename').keypress(function() {
+            var value = $('#forename').val();
+            value = value.replace(';', '');
+            $('#forename').val(value);
+        });
+        
+        $('#lastname').keyup(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#lastname').keypress(function() {
+            var value = $('#lastname').val();
+            value = value.replace(';', '');
+            $('#lastname').val(value);
+        });
+        
+        $('#initialsname').keyup(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#initialsname').keypress(function() {
+            var value = $('#initialsname').val();
+            value = value.replace(';', '');
+            $('#initialsname').val(value);
+        });
+        
+        $('#keyword').keyup(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#keyword').keypress(function() {
+            var value = $('#keyword').val();
+            value = value.replace(';', '');
+            $('#keyword').val(value);
+        });
+        
+        $('#mesh').keyup(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#mesh').keypress(function() {
+            var value = $('#mesh').val();
+            value = value.replace(';', '');
+            $('#mesh').val(value);
+        });
+        
+        $('#chemical').keyup(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#chemical').keypress(function() {
+            var value = $('#chemical').val();
+            value = value.replace(';', '');
+            $('#chemical').val(value);
+        });
+        
+        $('#pubtype').keyup(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
+        });
+        
+        $('#pubtype').keypress(function() {
+            var value = $('#pubtype').val();
+            value = value.replace(';', '');
+            $('#pubtype').val(value);
         });
     
       $("#title-article").change( validate.controls.title);
@@ -332,7 +413,6 @@ var validate =
                 var volumevar = trim(volume.val());
                 var issuevar = trim(issue.val());
                 
-                if($input.is(':disabled') == false ){
                     if(issnvar !== "" || journalTitlevar !== "" || abreviationvar !== "" || paginationvar !== "" || volumevar !== "" || issuevar !== ""){
                     
                         if(aux === "" || aux === null){
@@ -367,7 +447,7 @@ var validate =
                         return isValid; 
                     }
                     
-                }
+                
                 
                 return isValid; 
                 
@@ -398,12 +478,11 @@ var validate =
                 var issuevar = trim(issue.val());
                 
                 //Se anteriormente o journal era null
-                if(nlm.is(':disabled') == false){
-                    if(aux.length > 9){
+                    if(aux.length > 1 && aux.length < 9){
                     
                         isValid =  false;
                         $input.css('box-shadow', '0px 0px 1px 1px #FF3300');
-                        $('.control-issn-journal').html('ISSN deve conter no máximo 9 caracteres');
+                        $('.control-issn-journal').html('ISSN deve conter 9 caracteres');
                         $('.control-issn-journal').removeClass('ok').addClass( 'error', 300 );
                     
     
@@ -414,7 +493,7 @@ var validate =
 
                             return isValid;  
                         }
-                }
+                
                     
                         
                     return isValid;  
@@ -447,7 +526,6 @@ var validate =
                 var volumevar = trim(volume.val());
                 var issuevar = trim(issue.val());
                 
-                if(nlm.is(':disabled') == false){
                     if(nlmvar !== "" || issnvar !== "" || abreviationvar !== "" || paginationvar !== "" || volumevar !== "" || issuevar !== ""){
                         if(aux === "" || aux === null){
 
@@ -472,7 +550,7 @@ var validate =
 
                         return isValid;  
                     }
-                }
+                
                 
                 return isValid;  
             
