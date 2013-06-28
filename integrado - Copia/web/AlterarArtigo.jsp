@@ -118,6 +118,11 @@
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
                             <div class="control-journal-general ok"></div>
+                            <p id="select-busca"><b>Pesquisar por:</b>
+                                <input class="radios" type="radio" name="tipo" value="nlm" checked/>NLM
+                                <input class="radios" type="radio" name="tipo" value="issn"/>ISSN
+                                <input class="radios" type="radio" name="tipo" value="titulo"/>Título
+                             </p>
                             <table class="id-nlm">
                                 <tr>
                                     <td>
@@ -145,7 +150,7 @@
                         </p>
                         <p class="side-fields">
                             <label class="label-s" for="abreviation">Abreviação: </label>
-                            <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value="<%= objArticleBean.getAbreviation()%>"/>
+                            <input class="text-inline abreviation-title-edt" type="text" name="abreviation" id="abreviation" value="<%= objArticleBean.getJournal().getAbreviation()%>"/>
                         </p>
                         <label class="label-s label-right" id="erro" style="color: red">
                              
@@ -404,7 +409,7 @@
         <script charset="utf-8" src="js/autocomplete.js"></script>
         <script charset="utf-8" src="js/buscarJournal.js"></script>
         
-        <script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
+        <script charset="utf-8" src="js/alterar-artigo-validation.js"></script>
         <script charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </body>
 </html>

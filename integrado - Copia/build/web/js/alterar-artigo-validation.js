@@ -16,6 +16,58 @@ $(document).ready(
            $('#pesquisar-nlm').css('cursor', 'default');
            $('#pesquisar-issn').css('cursor', 'default');
            $('#pesquisar-title').css('cursor', 'default');
+           $('.radios').attr('disabled', 'disabled');
+           
+       } else {
+            $('.radios').removeAttr('disabled');
+            $('#nlmuniqueid').attr('placeholder', 'Busque pelo ID');
+            $('#nlmuniqueid').attr('data-provide', 'typeahead');
+            $('#pesquisar-nlm').css('display', 'inline');
+            $('#issn').attr('placeholder', '');
+            $('#issn').attr('data-provide', '');
+            $('#pesquisar-issn').css('display', 'none');
+            $('#journalTitle').attr('placeholder', '');
+            $('#journalTitle').attr('data-provide', '');
+            $('#pesquisar-title').css('display', 'none');
+            
+            $('.radios').on('click', function() {
+             if ($('input:checked').val() === 'nlm') {
+                 $('#nlmuniqueid').attr('placeholder', 'Busque pelo ID');
+                 $('#nlmuniqueid').attr('data-provide', 'typeahead');
+                 $('#pesquisar-nlm').css('display', 'inline');
+                 $('#issn').attr('placeholder', '');
+                 $('#issn').attr('data-provide', '');
+                 $('#pesquisar-issn').css('display', 'none');
+                 $('#journalTitle').attr('placeholder', '');
+                 $('#journalTitle').attr('data-provide', '');
+                 $('#pesquisar-title').css('display', 'none');
+             } else {
+                  if ($('input:checked').val() === 'issn'){
+                     $('#nlmuniqueid').attr('placeholder', '');
+                     $('#nlmuniqueid').attr('data-provide', '');
+                     $('#pesquisar-nlm').css('display', 'none');
+                     $('#issn').attr('placeholder', 'Busque pelo ISSN');
+                     $('#issn').attr('data-provide', 'typeahead');
+                     $('#pesquisar-issn').css('display', 'inline');
+                     $('#journalTitle').attr('placeholder', '');
+                     $('#journalTitle').attr('data-provide', '');
+                     $('#pesquisar-title').css('display', 'none');
+                  } else {
+                      //titulo
+                     $('#nlmuniqueid').attr('placeholder', '');
+                     $('#nlmuniqueid').attr('data-provide', '');
+                     $('#pesquisar-nlm').css('display', 'none');
+                     $('#issn').attr('placeholder', '');
+                     $('#issn').attr('data-provide', '');
+                     $('#pesquisar-issn').css('display', 'none');
+                     $('#journalTitle').attr('placeholder', 'Busque pelo Tíitulo');
+                     $('#journalTitle').attr('data-provide', 'typeahead');
+                     $('#pesquisar-title').css('display', 'inline');
+                  }
+
+             }
+
+         });
        }
        
        $('#title-article').keypress(function(e) {

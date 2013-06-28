@@ -365,10 +365,24 @@ input {
     width:94%;
 }
 
-.control-cadastro{
+.control-cadastro,
+.control-altear-journal{
     color: #b94a48;
     background-color: #f2dede;
     border: 2px solid #eed3d7;
     text-align: center;
     margin-top:2%;
+}
+
+#select-busca{
+    font-family: 'Tahoma', sans-serif;
+    font-size: 17px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    text-align: center;
+    margin-left: 8%;
+}
+
+.radios{
+    margin-left:8px;
 }

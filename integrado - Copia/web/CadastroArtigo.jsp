@@ -82,6 +82,11 @@
                         </p>
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
+                        <p id="select-busca"><b>Pesquisar por:</b>
+                           <input class="radios" type="radio" name="tipo" value="nlm" checked/>NLM
+                           <input class="radios" type="radio" name="tipo" value="issn"/>ISSN
+                           <input class="radios" type="radio" name="tipo" value="titulo"/>Título
+                        </p>
                         <table class="id-nlm">
                             <tr>
                                 <td>
@@ -268,5 +273,7 @@
         <script charset="utf-8" src="js/buscarJournal.js"></script>
         <script charset="utf-8" src="js/cadastro-artigo-validation.js"></script>
         <script charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script charset="utf-8" src="js/maskinput.js"></script>
+        <script charset="utf-8" src="js/mask-validations.js"></script>
     </body>
 </html>
