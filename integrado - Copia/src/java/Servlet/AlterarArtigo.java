@@ -4,12 +4,12 @@
  */
 package Servlet;
 
+import Banco.AlterarArticleDAO;
+import Banco.PubMedDAOException;
 import Bean.Article;
 import Bean.Author;
 import Bean.Journal;
 import Bean.Usuario;
-import Banco.CadastrarArtigoDAO;
-import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ian
  */
-public class CadastrarArtigo extends HttpServlet {
+public class AlterarArtigo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -47,10 +47,10 @@ public class CadastrarArtigo extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarArtigo</title>");            
+            out.println("<title>Servlet AlterarArtigo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarArtigo at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AlterarArtigo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -88,12 +88,11 @@ public class CadastrarArtigo extends HttpServlet {
             throws ServletException, IOException {
         try{
             
+            /*Pega o usuário que ta logado no banco*/
             Usuario user = new Usuario();
-            
-            /*pega usuario da sessão*/
             HttpSession session = request.getSession(false);
             if (session != null){
-                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+                user.setAttrUsuario((String)session.getAttribute("username"), (String)session.getAttribute("password"));
             }
             
             Article artigo = new Article();
@@ -175,8 +174,8 @@ public class CadastrarArtigo extends HttpServlet {
             }
             artigo.setPublicationType(pubtype);
             
-            CadastrarArtigoDAO cadArtigo = new CadastrarArtigoDAO(user);
-            cadArtigo.cadastraArtigo(artigo);
+            AlterarArticleDAO altArtigo = new AlterarArticleDAO(user);
+            altArtigo.alterarArticle(artigo);
               
             request.setAttribute("artigo", artigo);
             
@@ -186,10 +185,10 @@ public class CadastrarArtigo extends HttpServlet {
             
             
         }catch(PubMedDAOException e){
-            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AlterarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
-            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AlterarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
     }

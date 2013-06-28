@@ -11,15 +11,20 @@ import java.util.ArrayList;
  * @author Ian
  */
 public class Article {
-
-    public Article(String articleID, String resumo, String title) {
+    
+    public Article() {
+        this.flag = 0;
+        this.autores = new ArrayList<Author>();
+        this.chemical = new ArrayList<String>();
+        this.keyWord = new ArrayList<String>();
+        this.meshHeading = new ArrayList<String>();
+        this.publicationType = new ArrayList<String>();
+    }
+    
+    public void setAttrIniciais(String articleID, String resumo, String title){
         this.articleID = articleID;
         this.title = title;
         this.resumo = resumo;
-        this.flag = 0;
-    }
-
-    public Article() {
     }
 
     public String getArticleID() {

@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +73,16 @@ public class BuscaInicial extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"","");
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão caso a pessoa esteja logada*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            } else {
+                user.setAttrUsuario("Visitante", "V1s1t4nt3!");
+            }
             
             //recebe o valor buscado na operação de busca avançada
             String titJournal = request.getParameter("journal-title-edt");
@@ -137,7 +147,17 @@ public class BuscaInicial extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"","");
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão caso a pessoa esteja logada*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            } else {
+                user.setAttrUsuario("Visitante", "V1s1t4nt3!");
+            }
+            
             //recebe o valor buscado na operação de busca simples
             String valorBusca = request.getParameter("search");
             String pagina = request.getParameter("pagina");            

@@ -9,19 +9,18 @@ package Bean;
  * @author Ian
  */
 public class Journal {
-    
-    public String getISSN() {
-        return ISSN;
-    }
 
-    public Journal(String ISSN, String title, String abreviation, String nlmUniqueID) {
+    public Journal() {}
+    
+    public void setAttrInicias(String ISSN, String title, String abreviation, String nlmUniqueID){
         this.ISSN = ISSN;
         this.title = title;
         this.abreviation = abreviation;
         this.nlmUniqueID = nlmUniqueID;
     }
-
-    public Journal() {
+    
+    public String getISSN() {
+        return ISSN;
     }
 
     public void setISSN(String ISSN) {

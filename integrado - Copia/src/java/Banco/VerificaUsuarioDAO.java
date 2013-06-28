@@ -91,4 +91,24 @@ public class VerificaUsuarioDAO {
             throw new SQLException(e.getMessage());
         }
     }
+    
+    /*Altera o tpo de um usuário cadastrado no banco*/
+    public void alterarLogin(String login, String tipoA, String nTipo) throws PubMedDAOException, SQLException{
+        try {
+            
+            /*Prepara pra executar a procedure*/
+            CallableStatement cstmt = conn.prepareCall("{call dbo.alterarTipoLogin(?, ?, ?)}");
+            
+            cstmt.setString(1, login);
+            cstmt.setString(2, tipoA);
+            cstmt.setString(3, nTipo);
+            cstmt.execute();
+            
+            /*Fecha a conexão*/
+            ConnectionPubMed.close(conn, null, null);
+            
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
 }

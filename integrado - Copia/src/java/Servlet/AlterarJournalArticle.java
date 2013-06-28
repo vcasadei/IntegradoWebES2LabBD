@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -90,15 +91,24 @@ public class AlterarJournalArticle extends HttpServlet {
         try{
             String titulo, nlm, abreviation;
             
+            /*Pega os atributos*/
             titulo = request.getParameter("journalTitle");
             //nlm = request.getParameter("valuenlm");
             nlm = request.getParameter("nlmuniqueid");
             abreviation = request.getParameter("abreviation");
             
-            AlterarJournalArticleDAO alterar = new AlterarJournalArticleDAO(new Usuario("labbd05", "bananassaoazuis"));
-            alterar.alterarJournal(new Journal("", titulo, abreviation, nlm));
+            /*Pega o usuário que ta logado no banco*/
+            Usuario user = new Usuario();
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String)session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
             
-            /*Redireciona pra uma página que mostra o journal alterado com sucesso*/
+            AlterarJournalArticleDAO alterar = new AlterarJournalArticleDAO(user);
+            Journal jr = new Journal();
+            jr.setAttrInicias("", titulo, abreviation, nlm);
+            alterar.alterarJournal(jr);
+            
             
         }catch(PubMedDAOException e){
             Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);

@@ -59,7 +59,7 @@
                     <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="#">Resultados</a> -> <a>Artigo</a> <a href="AlterarArtigo.jsp">Alterar Artigo</a></div>
                     <h2>Alterar Artigo</h2>
 
-                    <form class="form-cadastro" action="CadastrarArtigo" method="POST">
+                    <form class="form-cadastro" action="AlterarArtigo" method="POST">
                         <div class="separator separator1">Informações Gerais</div>
                         <%
                             Article objArticleBean = (Article) request.getAttribute("artigoBean");
@@ -378,7 +378,7 @@
 
                         <div class="control-cadastro ok"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
+                            <input type="button" class="btn-cadastrar" value="Alterar">
                         </div>
                         <!-- <div class="btn-cadastrar">
                             Cadastrar

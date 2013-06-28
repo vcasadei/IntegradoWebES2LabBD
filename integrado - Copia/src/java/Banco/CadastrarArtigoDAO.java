@@ -33,7 +33,9 @@ public class CadastrarArtigoDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         } else {
             retorno = null;
         }
@@ -48,7 +50,9 @@ public class CadastrarArtigoDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         } else {
             retorno = null;
         }
@@ -63,7 +67,9 @@ public class CadastrarArtigoDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         } else {
             retorno = null;
         }
@@ -78,7 +84,9 @@ public class CadastrarArtigoDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno.add(new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation")));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno.add(jr);
         } else {
             retorno = null;
         }

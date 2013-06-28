@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,7 +88,15 @@ public class BuscaMeshHeading extends HttpServlet {
             List<String> listaMeshs;
             String meshHeading;
             int cont = 0;
-            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "mesh");
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(user, "mesh");
             
             meshHeading = request.getParameter("mesh");
             listaMeshs = busca.buscaAtributosAutoComplete(meshHeading);

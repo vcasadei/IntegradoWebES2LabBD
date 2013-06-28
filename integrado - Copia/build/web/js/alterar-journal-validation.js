@@ -176,25 +176,8 @@ $(document).ready(
             {
                 $('#msg').html('');
                 $('.control-altear-journal').removeClass('error').addClass( 'ok', 300 );
-                $("#btn-cadastrar").blur();
-//                $.ajax({
-//                    type: "POST",
-//                    url: "CadastrarArtigo",
-//                    dataType: "text",
-//                    data: {login: $('#username-edt').val(), senha: $('#password-edt').val()}
-//                }).done(function(data) {
-//                    status = data;
-//                    if (status == "2") {
-//                        $('.control-altear-journal').html('Login já está sendo utilizado!');
-//                        $('.control-altear-journal').removeClass('ok').addClass( 'error', 300 );
-//                    } else if (status == "0") {
-//                        $('.control-altear-journal').html('Houve um erro, tente novamente mais tarde');
-//                        $('.control-altear-journal').removeClass('ok').addClass( 'error', 300 );
-//                    } else {
-//                        window.location.href='index.jsp';
-//                        alert("Usuário cadastrado com sucesso!");
-//                    }
-//                });
+                $(".btn-cadastrar").blur();
+                $(".form-cadastro").submit(); 
                 
                
             } else {

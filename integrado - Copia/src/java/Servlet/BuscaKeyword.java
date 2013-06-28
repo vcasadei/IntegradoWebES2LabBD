@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,8 +88,15 @@ public class BuscaKeyword extends HttpServlet {
             List<String> listaKeywords = null;
             String keyWord;
             int cont = 0;
+            Usuario user = new Usuario();
+            
+            /*pega usuario sa sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
 
-            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "keyWord");
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(user, "keyWord");
 
             keyWord = request.getParameter("key");
             listaKeywords = busca.buscaAtributosAutoComplete(keyWord);

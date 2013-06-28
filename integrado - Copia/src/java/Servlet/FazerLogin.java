@@ -89,7 +89,8 @@ public class FazerLogin extends HttpServlet {
             senha = request.getParameter("senha");
 
             /*Tenta conetar no banco*/
-            Usuario user = new Usuario(login, senha);
+            Usuario user = new Usuario();
+            user.setAttrUsuario(login, senha);
             VerificaUsuarioDAO conexao = new VerificaUsuarioDAO(user);
 
             /*Verificar se é admin ou comum e atribuir a variável tipo*/

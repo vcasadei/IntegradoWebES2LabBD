@@ -15,6 +15,13 @@ public class Usuario {
     private String tipo;
     int flag;
 
+    public Usuario(){}
+    
+    public void setAttrUsuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+    
     public String getTipo() {
         return tipo;
     }
@@ -36,11 +43,6 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Usuario(String login, String senha) {
-        this.login = login;
         this.senha = senha;
     }
 }

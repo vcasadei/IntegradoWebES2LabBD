@@ -95,7 +95,7 @@
                 </div>
                 <div class="control-altear-journal ok"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="submit" class="btn-cadastrar" value="Alterar">
+                            <input type="button" class="btn-cadastrar" value="Alterar">
                         </div>
                 <div class="voltar-box">
                     <a href="index.html" class="voltar-link">

@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,7 +88,14 @@ public class BuscaIssnJournal extends HttpServlet {
             List<String> listaIssn;
             String issn;
             int cont = 0;
-            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "issnJournal");
+            Usuario user = new Usuario();
+            
+            /*pega usuario sa sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(user, "issnJournal");
             
             issn = request.getParameter("issn");
             listaIssn = busca.buscaAtributosAutoComplete(issn);

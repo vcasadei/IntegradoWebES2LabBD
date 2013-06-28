@@ -19,7 +19,9 @@ public class CadastrarUsuarioDAO {
     
     public CadastrarUsuarioDAO() throws PubMedDAOException, SQLException{
         
-        this.conn = ConnectionPubMed.getConnection(new Usuario("labbd05", "bananassaoazuis"));
+        Usuario user = new Usuario();
+        user.setAttrUsuario("labbd05", "bananassaoazuis");
+        this.conn = ConnectionPubMed.getConnection(user);
     }
     
     public void cadastrarComum(Usuario usuario) throws SQLException, PubMedDAOException{

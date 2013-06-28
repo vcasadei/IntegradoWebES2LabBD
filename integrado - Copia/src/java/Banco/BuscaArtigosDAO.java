@@ -57,7 +57,8 @@ public class BuscaArtigosDAO {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Article art = new Article(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
+            Article art = new Article();
+            art.setAttrIniciais(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
             listaTitulos.add(art);
         }
 
@@ -109,7 +110,8 @@ public class BuscaArtigosDAO {
         ResultSet rs = ps.executeQuery(SQL);
 
         while (rs.next()) {
-            Article artigo = new Article(rs.getString("articleID"), rs.getString("title"), rs.getString("resumo"));
+            Article artigo = new Article();
+            artigo.setAttrIniciais(rs.getString("articleID"), rs.getString("title"), rs.getString("resumo"));
             retorno.add(artigo);
         }
 
@@ -132,7 +134,8 @@ public class BuscaArtigosDAO {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Article art = new Article(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
+            Article art = new Article();
+            art.setAttrIniciais(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
             listaTitulos.add(art);
         }
 
@@ -158,8 +161,10 @@ public class BuscaArtigosDAO {
             dados.setArticleID(articleID);
             dados.setTitle(titulo);
             dados.setResumo(resumo);
-            dados.setJournal(new Journal(rs.getString("issn"), rs.getString("journal.title"),
-                    rs.getString("abrevition"), rs.getString("journal")));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("journal.title"),
+                    rs.getString("abrevition"), rs.getString("journal"));
+            dados.setJournal(jr);
             dados.setPagination(rs.getString("pagination"));
             dados.setVolume(rs.getString("volume"));
             dados.setIssue(rs.getString("issue"));
@@ -211,7 +216,9 @@ public class BuscaArtigosDAO {
                 + articleID + "'";
         rs = ps.executeQuery(SQL);
         while (rs.next()) {
-            dados.addAuthor(new Author(rs.getString("foreName"), rs.getString("lastName"), rs.getString("initials")));
+            Author autor = new Author();
+            autor.setAttrIniciais(rs.getString("foreName"), rs.getString("lastName"), rs.getString("initials"));
+            dados.addAuthor(autor);
         }
 
         return dados;

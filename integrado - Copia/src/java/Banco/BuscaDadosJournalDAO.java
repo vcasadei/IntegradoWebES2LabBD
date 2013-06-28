@@ -29,7 +29,9 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("nlmUniqueID"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         }else{
             retorno = null;
         }
@@ -44,7 +46,9 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         }else{
             retorno = null;
         }
@@ -59,7 +63,9 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            Journal jr = new Journal();
+            jr.setAttrInicias(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
+            retorno = jr;
         }else{
             retorno = null;
         }

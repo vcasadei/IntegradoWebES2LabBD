@@ -82,7 +82,8 @@ public class BuscaUsuario extends HttpServlet {
             }
             
             String login = request.getParameter("login");
-            Usuario user = new Usuario(loginAtual, senhaAtual);
+            Usuario user = new Usuario();
+            user.setAttrUsuario(loginAtual, senhaAtual);
             VerificaUsuarioDAO verUser = new VerificaUsuarioDAO(user);
             
             if (verUser.verificarLogin(loginAtual) == 1){

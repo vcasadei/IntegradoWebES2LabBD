@@ -13,11 +13,11 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,8 +72,16 @@ public class BuscaJournalTitulo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario sa sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
             String title = request.getParameter("journal-title-edt");
-            Usuario user = new Usuario("labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalTitulo(title);
@@ -123,8 +131,16 @@ public class BuscaJournalTitulo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario sa sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
             String title = request.getParameter("tit");
-            Usuario user = new Usuario("labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalTitulo(title);

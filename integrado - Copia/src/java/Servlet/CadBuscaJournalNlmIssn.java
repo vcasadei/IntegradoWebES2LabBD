@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -68,8 +69,16 @@ public class CadBuscaJournalNlmIssn extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
             String nlmID = request.getParameter("nlm");
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalNlmID(nlmID);
@@ -109,8 +118,16 @@ public class CadBuscaJournalNlmIssn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
             String issn = request.getParameter("issn");
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalIssn(issn);

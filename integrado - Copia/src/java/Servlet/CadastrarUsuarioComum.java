@@ -88,7 +88,10 @@ public class CadastrarUsuarioComum extends HttpServlet {
 
             CadastrarUsuarioDAO cad = new CadastrarUsuarioDAO();
 
-            cad.cadastrarComum(new Usuario(login, senha));
+            /*Seta os dados do usuário a ser cadastrado*/
+            Usuario user = new Usuario();
+            user.setAttrUsuario(login, senha);
+            cad.cadastrarComum(user);
 
             /*Manda códgo de msg de usuário cadastrado com sucesso*/
             response.setContentType("text/html;charset=UTF-8");

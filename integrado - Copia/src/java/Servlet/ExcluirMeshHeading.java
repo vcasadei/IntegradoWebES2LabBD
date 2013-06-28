@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -82,7 +83,14 @@ public class ExcluirMeshHeading extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            Usuario user = new Usuario("labbd05","bananassaoazuis");
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            }
+            
             ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
             excluir.excluirMeshHeading();
             

@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,13 +88,17 @@ public class CadastrarUsuario extends HttpServlet {
             String senha = request.getParameter("senha");
             String tipo = request.getParameter("tipo");
             
+            /*Seta os dados do usuário a ser cadastrado*/
+            Usuario user = new Usuario();
+            user.setAttrUsuario(login, senha);
+            
             CadastrarUsuarioDAO cad = new CadastrarUsuarioDAO();
             
             /*Verifica se é pra cadastrar um administrador ou um usuário comum*/
             if (tipo.equals("administrador")){
-                cad.cadastrarAdim(new Usuario(login, senha));
+                cad.cadastrarAdim(user);
             } else {
-                cad.cadastrarComum(new Usuario(login, senha));
+                cad.cadastrarComum(user);
             }
             
             /*Manda msg de usuário cadastrado com sucesso*/

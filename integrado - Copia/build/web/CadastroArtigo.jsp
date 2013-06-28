@@ -242,7 +242,7 @@
                         </div>
                         <div class="control-cadastro ok"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
+                            <input type="button" class="btn-cadastrar" value="Cadastrar">
                         </div>
                     </form>
                 </div>

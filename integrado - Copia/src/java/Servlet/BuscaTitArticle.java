@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -89,8 +90,19 @@ public class BuscaTitArticle extends HttpServlet {
             String valor = request.getParameter("tit");
             String tipo = request.getParameter("tipo");
             int cont = 0;
-            BuscaArtigosDAO busca = new BuscaArtigosDAO(new Usuario("labbd05", "bananassaoazuis"));
+            Usuario user = new Usuario();
+            
+            /*pega usuario da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            } else {
+                user.setAttrUsuario("Visitante", "V1s1t4nt3!");
+            }
+            
+            BuscaArtigosDAO busca = new BuscaArtigosDAO(user);
 
+            /*Verifica se é pra fazer o autocomplete de título ou de keyword*/
             if (tipo.equals("titulo")){
                 listaTitulos = busca.autocompleteTitulo(valor);
             } else {

@@ -4,9 +4,9 @@
  */
 package Servlet;
 
-import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
 import Banco.PubMedDAOException;
+import Banco.VerificaUsuarioDAO;
+import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,9 +20,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ian
+ * @author Caah
  */
-public class ExcluirPublicationType extends HttpServlet {
+public class AlterarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -43,13 +43,13 @@ public class ExcluirPublicationType extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirPublicationType</title>");            
+            out.println("<title>Servlet BuscaUsuario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirPublicationType at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BuscaUsuario at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -67,7 +67,35 @@ public class ExcluirPublicationType extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        try {
+
+            Usuario user = new Usuario();
+            String dados;
+
+            /*Pegar os valores da sessão*/
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                user.setAttrUsuario((String) session.getAttribute("username"), (String) session.getAttribute("password"));
+            }
+
+            String login = request.getParameter("login");
+            VerificaUsuarioDAO verUser = new VerificaUsuarioDAO(user);
+
+            dados = Integer.toString(verUser.verificarLogin(login));
+
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(dados);
+            writer.close();
+
+        } catch (PubMedDAOException e) {
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        } catch (SQLException e) {
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }
     }
 
     /**
@@ -82,27 +110,39 @@ public class ExcluirPublicationType extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try{
+
+        try {
+
             Usuario user = new Usuario();
             
-            /*pega usuario da sessão*/
+            /*Pega o usuário da sessão*/
             HttpSession session = request.getSession(false);
-            if (session != null){
-                user.setAttrUsuario((String) session.getAttribute("username"), (String)session.getAttribute("password"));
+            if (session != null) {
+                user.setAttrUsuario((String) session.getAttribute("username"), (String) session.getAttribute("password"));
             }
-            
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirPublication();
-            
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-        }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirPublicationType.class.getName()).log(Level.SEVERE, null, e);
+
+            String login, tipo, nTipo;
+
+            login = request.getParameter("login");
+            tipo = request.getParameter("tipo");
+
+            /*Verifica qual o tipo atual pra poder alterar*/
+            if (tipo.equals("Comum")) {
+                nTipo = "Administrador";
+            } else {
+                nTipo = "Comum";
+            }
+
+            /*Altera o tpo do usuário*/
+            VerificaUsuarioDAO alterar = new VerificaUsuarioDAO(user);
+            alterar.alterarLogin(login, tipo, nTipo);
+
+
+        } catch (PubMedDAOException e) {
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
-        }catch(SQLException e){
-            Logger.getLogger(ExcluirPublicationType.class.getName()).log(Level.SEVERE, null, e);
+        } catch (SQLException e) {
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
     }

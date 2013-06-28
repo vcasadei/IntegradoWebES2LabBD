@@ -13,14 +13,14 @@ public class Author {
     public Author() {
     }
 
-    public String getForeName() {
-        return foreName;
-    }
-
-    public Author(String foreName, String lastName, String initials) {
+    public void setAttrIniciais(String foreName, String lastName, String initials) {
         this.foreName = foreName;
         this.lastName = lastName;
         this.initials = initials;
+    }
+
+    public String getForeName() {
+        return foreName;
     }
 
     public void setForeName(String foreName) {
@@ -42,7 +42,6 @@ public class Author {
     public void setInitials(String initials) {
         this.initials = initials;
     }
-    
     private String foreName;
     private String lastName;
     private String initials;
